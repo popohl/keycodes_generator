@@ -11,7 +11,6 @@ CFLAGS	libft/Makefile	/^CFLAGS		= -Wall -Wextra -g3$/;"	m
 D	Makefile	/^D		= deps\/$/;"	m
 DEPS	Makefile	/^DEPS	= $(SRCS:$S%=$D%.d)$/;"	m
 ERROR	incs/various_shit.h	/^# define ERROR /;"	d
-ESCAPE_VALUE	srcs/main.c	/^#define ESCAPE_VALUE /;"	d	file:
 FONT_HEIGHT	minilibx/mlx_int.h	/^#define	FONT_HEIGHT	/;"	d
 FONT_WIDTH	minilibx/mlx_int.h	/^#define FONT_WIDTH	/;"	d
 FT_GETOPT_H	libft/incs/ft_getopt.h	/^# define FT_GETOPT_H$/;"	d
@@ -24,7 +23,6 @@ LIBFT_H	libft/incs/libft.h	/^# define LIBFT_H$/;"	d
 LIBS	Makefile	/^LIBS	= minilibx libft$/;"	m
 MAIN_STRUCTS_H	incs/main_structs.h	/^# define MAIN_STRUCTS_H$/;"	d
 MAX_EVENT	minilibx/mlx_int.h	/^#define	MAX_EVENT	/;"	d
-MAX_ITERATIONS	srcs/main.c	/^#define MAX_ITERATIONS /;"	d	file:
 MAX_PIXEL_NB	minilibx/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
 MLX_H	minilibx/mlx.h	/^#define	MLX_H$/;"	d
 NAME	Makefile	/^NAME	= fractol$/;"	m
@@ -40,10 +38,9 @@ ONE_WAY_LIST_H	libft/incs/one_way_list.h	/^# define ONE_WAY_LIST_H$/;"	d
 RETURN	minilibx/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
 RM	Makefile	/^RM		= \/bin\/rm -rf$/;"	m
 S	Makefile	/^S		= srcs\/$/;"	m
-SCREEN_SIZE	srcs/main.c	/^#define SCREEN_SIZE /;"	d	file:
 SRC	minilibx/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
 SRCS	Makefile	/^SRCS	:= $(foreach file,$(SRCS),$S$(file))$/;"	m
-SRCS	Makefile	/^SRCS	= test.c colors.c calculate_fractal.c$/;"	m
+SRCS	Makefile	/^SRCS	= main.c colors.c calculate_fractal.c$/;"	m
 SRCS	libft/Makefile	/^SRCS		= checker\/ft_isalnum.c checker\/ft_isalpha.c checker\/ft_isascii.c \\$/;"	m
 SRCSDIR	libft/Makefile	/^SRCSDIR		= srcs$/;"	m
 UNIQ_BPP	minilibx/mlx_int.h	/^#define UNIQ_BPP	/;"	d
@@ -59,6 +56,7 @@ content	libft/incs/one_way_list.h	/^	void			*content;$/;"	m	struct:s_list
 count_words	libft/srcs/str/ft_split.c	/^static int	count_words(const char *str, char separator)$/;"	f	file:
 data	incs/main_structs.h	/^	int			*data;$/;"	m	struct:s_image_info
 display_log	minilibx/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
+draw_weird_shit	srcs/main.c	/^void	draw_weird_shit(t_config *config)$/;"	f
 draw_weird_shit	srcs/test.c	/^void	draw_weird_shit(t_config *config)$/;"	f
 empty_string	libft/srcs/str/ft_substr.c	/^static char	*empty_string(void)$/;"	f	file:
 endian	incs/main_structs.h	/^	int			endian;$/;"	m	struct:s_image_info
@@ -132,9 +130,7 @@ get_arg	libft/srcs/io/ft_getopt.c	/^int	get_arg(t_opt *opt, int argc, char *argv
 get_color_value	srcs/colors.c	/^int	get_color_value(int r, int g, int b)$/;"	f
 get_color_value_double	srcs/colors.c	/^int	get_color_value_double(double r, double g, double b)$/;"	f
 get_coordinates	srcs/calculate_fractal.c	/^t_complex	get_coordinates(int x, int y, t_ivector2 screen_size, double escape_value)$/;"	f
-get_coordinates	srcs/main.c	/^static t_complex	get_coordinates(int x, int y, t_ivector2 screen_size)$/;"	f	file:
 get_iteration_count	srcs/calculate_fractal.c	/^int	get_iteration_count(t_complex coordinates, double escape_value,$/;"	f
-get_iteration_count	srcs/main.c	/^int	get_iteration_count(int current_count, t_complex coordinates, t_complex z)$/;"	f
 get_next_line	libft/srcs/io/get_next_line.c	/^int			get_next_line(int fd, char **line)$/;"	f
 get_word_end	libft/srcs/str/ft_split.c	/^static int	get_word_end(const char *str, char separator, int i)$/;"	f	file:
 glsl_info_s	minilibx/mlx_int.h	/^typedef struct	glsl_info_s$/;"	s
@@ -173,7 +169,7 @@ loc_pixel_winhalfsize	minilibx/mlx_int.h	/^  GLint		loc_pixel_winhalfsize;$/;"	m
 loop_hook	minilibx/mlx_int.h	/^  void			(*loop_hook)(void *);$/;"	m	struct:mlx_ptr_s
 loop_hook_data	minilibx/mlx_int.h	/^  void			*loop_hook_data;$/;"	m	struct:mlx_ptr_s
 loop_timer	minilibx/mlx_int.h	/^  void			*loop_timer;$/;"	m	struct:mlx_ptr_s
-main	srcs/main.c	/^int		main(void)$/;"	f
+main	srcs/main.c	/^int	main(void)$/;"	f
 main	srcs/test.c	/^int	main(void)$/;"	f
 main_loop_active	minilibx/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
 max_iterations	incs/main_structs.h	/^	double	max_iterations;$/;"	m	struct:s_algorithm
@@ -239,7 +235,6 @@ s_mlx_params	incs/main_structs.h	/^typedef	struct s_mlx_params$/;"	s
 s_opt	libft/incs/ft_getopt.h	/^typedef struct s_opt$/;"	s
 s_xpm_col	minilibx/mlx_xpm.c	/^typedef struct  s_xpm_col$/;"	s	file:
 scaleBetween	srcs/calculate_fractal.c	/^double	scaleBetween(int value, int original_max, t_ivector2 new_range)$/;"	f
-scaleBetween	srcs/main.c	/^double	scaleBetween(int value, int original_max, t_ivector2 new_range)$/;"	f
 select_smallest	libft/srcs/str/ft_substr.c	/^static size_t	select_smallest(size_t num1, size_t num2)$/;"	f	file:
 size	incs/main_structs.h	/^	t_ivector2	size;$/;"	m	struct:s_image_info
 size_line	incs/main_structs.h	/^	int			size_line;$/;"	m	struct:s_image_info

@@ -11,7 +11,7 @@ D		= deps/
 NAME	= fractol
 
 # list of your source files
-SRCS	= test.c colors.c calculate_fractal.c
+SRCS	= main.c colors.c calculate_fractal.c
 
 # list of external libraries
 LIBS	= minilibx libft
