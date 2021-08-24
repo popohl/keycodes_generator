@@ -11,15 +11,15 @@ D		= deps/
 NAME	= fractol
 
 # list of your source files
-SRCS	= main.c
+SRCS	= test.c colors.c calculate_fractal.c
 
 # list of external libraries
-LIBS	= minilibx
+LIBS	= minilibx libft
 
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra
+CFLAGS	+= -Wall -Wextra -Ofast
 # Assembly flags (add the libraries here for linux)
 LDFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 
@@ -58,15 +58,19 @@ $(DEPS): $D%.d: $S%
 	@$(CC) $(CFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
 
 $(NAME): $(OBJS)
+	@echo "Building external libraries"
+	@$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
 	@echo "Assembling $(NAME)"
 	@$(CC) $(LDFLAGS) $^ -o $@
 
 clean:
 	@echo "Cleaning up..."
+	@$(foreach lib, $(LIBS),make --directory=$(lib) clean 2> /dev/null > /dev/null;)
 	@$(RM) $D $O
 
 fclean: clean
 	@echo "Everything!"
+	@$(foreach lib, $(LIBS),make --directory=$(lib) fclean 2> /dev/null > /dev/null;)
 	@$(RM) $(NAME)
 
 re: fclean all
