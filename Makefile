@@ -11,7 +11,7 @@ D		= deps/
 NAME	= fractol
 
 # list of your source files
-SRCS	= main.c colors.c calculate_fractal.c
+SRCS	= main.c color_functions.c calculate_fractal.c config_initialisation.c checkers.c draw.c
 
 # list of external libraries
 LIBS	= minilibx libft
@@ -65,15 +65,25 @@ $(NAME): $(OBJS)
 
 clean:
 	@echo "Cleaning up..."
+	@$(RM) $D $O
+
+libclean:
+	@echo "Cleaning up, including libraries..."
 	@$(foreach lib, $(LIBS),make --directory=$(lib) clean 2> /dev/null > /dev/null;)
 	@$(RM) $D $O
 
 fclean: clean
 	@echo "Everything!"
+	@$(RM) $(NAME)
+
+libfclean: libclean
+	@echo "Everything!"
 	@$(foreach lib, $(LIBS),make --directory=$(lib) fclean 2> /dev/null > /dev/null;)
 	@$(RM) $(NAME)
 
 re: fclean all
+
+libre: libfclean all
 
 test: $(NAME)
 	./$(NAME)

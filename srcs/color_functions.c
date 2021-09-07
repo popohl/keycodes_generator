@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   various_shit.h                                     :+:      :+:    :+:   */
+/*   color_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/24 17:55:30 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/07 12:59:36 by paulohl          ###   ########.fr       */
+/*   Created: 2021/08/24 17:47:23 by pohl              #+#    #+#             */
+/*   Updated: 2021/09/07 14:02:47 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARIOUS_SHIT_H
-# define VARIOUS_SHIT_H
+#include <math.h>
+#include "various_shit.h"
 
-# include <stdbool.h>
-# include "main_structs.h"
+int	get_color_value(int r, int g, int b)
+{
+	int		color;
 
-# define ERROR -1
-
-t_complex	get_coordinates(int x, int y, t_ivector2 screen_size);
-int	get_iteration_count(t_complex coordinates, double escape_value, int max_iterations);
-int	get_color_value(int r, int g, int b);
-int hsv_to_rgb(double hue, double sat, double val);
-
-#endif
+	color = 0;
+	color = color | (r << 16);
+	color = color | (g << 8);
+	color = color | b;
+	return (color);
+}
