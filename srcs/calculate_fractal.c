@@ -6,11 +6,11 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/07 13:12:22 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:25:12 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "useful_structs.h"
+#include "main_structs.h"
 #include "mlx.h"
 #include <math.h>
 #include <stdio.h>
@@ -37,18 +37,14 @@ int	get_iteration_count(t_complex coordinates, double escape_value,
 	return (current_count);
 }
 
-static double	scale_between(int value, int original_max, t_complex new_range)
+t_complex	get_coordinates(t_ivector2 screen_coord, t_ivector2 screen_size,
+		t_world_screen *world_screen)
 {
-	return ((double)((new_range.i - new_range.r) * value) /
-		(double)(original_max) + new_range.r);
-}
+	t_complex		result;
 
-t_complex	get_coordinates(int x, int y, t_ivector2 screen_size)
-{
-	t_complex		coordinates;
-	const t_complex	desired_range = {-2, 2};
-
-	coordinates.r = scale_between(x, screen_size.x, desired_range);
-	coordinates.i = scale_between(y, screen_size.y, desired_range);
-	return (coordinates);
+	result.r = world_screen->origin.r + ((double)screen_coord.x / screen_size.x)
+		* world_screen->width - world_screen->width / 2;
+	result.i = -world_screen->origin.i + ((double)screen_coord.y / screen_size.y)
+		* world_screen->height - world_screen->height / 2;
+	return (result);
 }

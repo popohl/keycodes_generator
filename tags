@@ -131,16 +131,17 @@ ft_tolower	libft/srcs/str/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/srcs/str/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 func_t	minilibx/mlx_int.h	/^typedef int (*func_t)();$/;"	t
 get_arg	libft/srcs/io/ft_getopt.c	/^int	get_arg(t_opt *opt, int argc, char *argv[], char **nextchar)$/;"	f
-get_color	srcs/draw.c	/^int	get_color(int width, int height, t_config *config)$/;"	f
+get_color	srcs/draw.c	/^int	get_color(int width, int height, t_config *cfg)$/;"	f
 get_color_value	srcs/color_functions.c	/^int	get_color_value(int r, int g, int b)$/;"	f
 get_color_value	srcs/colors.c	/^int	get_color_value(int r, int g, int b)$/;"	f
 get_color_value_double	srcs/colors.c	/^int	get_color_value_double(double r, double g, double b)$/;"	f
-get_coordinates	srcs/calculate_fractal.c	/^t_complex	get_coordinates(int x, int y, t_ivector2 screen_size)$/;"	f
+get_coordinates	srcs/calculate_fractal.c	/^t_complex	get_coordinates(t_ivector2 screen_coord, t_ivector2 screen_size,$/;"	f
 get_iteration_count	srcs/calculate_fractal.c	/^int	get_iteration_count(t_complex coordinates, double escape_value,$/;"	f
 get_next_line	libft/srcs/io/get_next_line.c	/^int			get_next_line(int fd, char **line)$/;"	f
 get_word_end	libft/srcs/str/ft_split.c	/^static int	get_word_end(const char *str, char separator, int i)$/;"	f	file:
 glsl_info_s	minilibx/mlx_int.h	/^typedef struct	glsl_info_s$/;"	s
 glsl_info_t	minilibx/mlx_int.h	/^} glsl_info_t;$/;"	t	typeref:struct:glsl_info_s
+height	incs/main_structs.h	/^	double		height;$/;"	m	struct:s_world_screen
 height	minilibx/font.c	/^  unsigned int 	 height;$/;"	m	struct:__anon1	file:
 height	minilibx/mlx_int.h	/^  int			height;$/;"	m	struct:mlx_img_list_s
 hsv_is_valid	srcs/colors.c	/^static bool	hsv_is_valid(double hue, double sat, double val)$/;"	f	file:
@@ -222,6 +223,7 @@ opterr	libft/incs/ft_getopt.h	/^	int		opterr;$/;"	m	struct:s_opt
 optind	libft/incs/ft_getopt.h	/^	int		optind;$/;"	m	struct:s_opt
 optopt	libft/incs/ft_getopt.h	/^	int		optopt;$/;"	m	struct:s_opt
 optreset	libft/incs/ft_getopt.h	/^	int		optreset;$/;"	m	struct:s_opt
+origin	incs/main_structs.h	/^	t_complex	origin;$/;"	m	struct:s_world_screen
 pixel_data	minilibx/font.c	/^  unsigned char	 pixel_data[1140 * 20 * 4 + 1];$/;"	m	struct:__anon1	file:
 pixel_fshader	minilibx/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_info_s
 pixel_program	minilibx/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s
@@ -240,8 +242,8 @@ s_ivector2	incs/useful_structs.h	/^typedef struct	s_ivector2$/;"	s
 s_list	libft/incs/one_way_list.h	/^typedef struct s_list$/;"	s
 s_mlx_params	incs/main_structs.h	/^typedef	struct s_mlx_params$/;"	s
 s_opt	libft/incs/ft_getopt.h	/^typedef struct s_opt$/;"	s
+s_world_screen	incs/main_structs.h	/^typedef struct	s_world_screen$/;"	s
 s_xpm_col	minilibx/mlx_xpm.c	/^typedef struct  s_xpm_col$/;"	s	file:
-scale_between	srcs/calculate_fractal.c	/^static double	scale_between(int value, int original_max, t_complex new_range)$/;"	f	file:
 select_smallest	libft/srcs/str/ft_substr.c	/^static size_t	select_smallest(size_t num1, size_t num2)$/;"	f	file:
 size	incs/main_structs.h	/^	t_ivector2	size;$/;"	m	struct:s_image_info
 size_line	incs/main_structs.h	/^	int			size_line;$/;"	m	struct:s_image_info
@@ -253,10 +255,13 @@ t_ivector2	incs/useful_structs.h	/^}	t_ivector2;$/;"	t	typeref:struct:s_ivector2
 t_list	libft/incs/one_way_list.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_mlx_params	incs/main_structs.h	/^}	t_mlx_params;$/;"	t	typeref:struct:s_mlx_params
 t_opt	libft/incs/ft_getopt.h	/^}	t_opt;$/;"	t	typeref:struct:s_opt
+t_world_screen	incs/main_structs.h	/^}	t_world_screen;$/;"	t	typeref:struct:s_world_screen
 t_xpm_col	minilibx/mlx_xpm.c	/^} t_xpm_col;$/;"	t	typeref:struct:s_xpm_col	file:
 texture	minilibx/mlx_int.h	/^  GLuint		texture;$/;"	m	struct:mlx_img_ctx_s
 vbuffer	minilibx/mlx_int.h	/^  GLuint		vbuffer;$/;"	m	struct:mlx_img_ctx_s
 vertexes	minilibx/mlx_int.h	/^  GLfloat		vertexes[8];$/;"	m	struct:mlx_img_list_s
+vscreen	incs/main_structs.h	/^	t_world_screen	vscreen;$/;"	m	struct:s_config
+width	incs/main_structs.h	/^	double		width;$/;"	m	struct:s_world_screen
 width	minilibx/font.c	/^  unsigned int 	 width;$/;"	m	struct:__anon1	file:
 width	minilibx/mlx_int.h	/^  int			width;$/;"	m	struct:mlx_img_list_s
 win_list	minilibx/mlx_int.h	/^  mlx_win_list_t	*win_list;$/;"	m	struct:mlx_ptr_s

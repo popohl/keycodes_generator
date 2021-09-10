@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/07 12:54:48 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:25:24 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ bool	initialize_config(t_config *config, char **argv)
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
 		return (false);
 	config->algo.escape_value = 2.0;
-	config->algo.max_iterations = 5000;
+	config->algo.max_iterations = 100;
+	config->vscreen.origin.r = 0;
+	config->vscreen.origin.i = 0;
+	config->vscreen.width = 2;
+	config->vscreen.height = config->vscreen.width *
+		((double)config->img.size.y/ config->img.size.x);
 	argv = NULL;
 	return (true);
 }
