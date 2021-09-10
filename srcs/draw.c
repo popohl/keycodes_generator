@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/07 14:05:23 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/10 13:52:15 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 #include "various_shit.h"
 #include "mlx.h"
 
-int	get_color(int width, int height, t_config *config)
+int	get_color(int width, int height, t_config *cfg)
 {
 	t_complex		coordinates;
 	unsigned int	iterations;
 	int				red_value;
+	t_ivector2		screen_coord;
 
-	coordinates = get_coordinates(width, height, config->img.size);
-	iterations = get_iteration_count(coordinates,
-			config->algo.escape_value, config->algo.max_iterations);
-	red_value = config->algo.max_iterations / (double)iterations * 255;
+	screen_coord.x = width;
+	screen_coord.y = height;
+	coordinates = get_coordinates(screen_coord, cfg->img.size, &cfg->vscreen);
+	iterations = get_iteration_count(coordinates, &cfg->algo);
+	red_value = cfg->algo.max_iteration / (double)iterations * 255;
 	return (get_color_value(red_value, 0, 0));
 }
 
