@@ -23,6 +23,41 @@ GNL_ERROR	libft/srcs/io/get_next_line.c	/^#define GNL_ERROR /;"	d	file:
 GNL_LINE	libft/srcs/io/get_next_line.c	/^#define GNL_LINE /;"	d	file:
 I	Makefile	/^I		= incs\/$/;"	m
 INCLUDES	libft/Makefile	/^INCLUDES	= incs$/;"	m
+KC_A	incs/keycodes.h	/^# define KC_A /;"	d
+KC_B	incs/keycodes.h	/^# define KC_B /;"	d
+KC_C	incs/keycodes.h	/^# define KC_C /;"	d
+KC_D	incs/keycodes.h	/^# define KC_D /;"	d
+KC_DOWN_ARR	incs/keycodes.h	/^# define KC_DOWN_ARR /;"	d
+KC_E	incs/keycodes.h	/^# define KC_E /;"	d
+KC_F	incs/keycodes.h	/^# define KC_F /;"	d
+KC_G	incs/keycodes.h	/^# define KC_G /;"	d
+KC_H	incs/keycodes.h	/^# define KC_H /;"	d
+KC_I	incs/keycodes.h	/^# define KC_I /;"	d
+KC_J	incs/keycodes.h	/^# define KC_J /;"	d
+KC_K	incs/keycodes.h	/^# define KC_K /;"	d
+KC_L	incs/keycodes.h	/^# define KC_L /;"	d
+KC_LEFT_ARR	incs/keycodes.h	/^# define KC_LEFT_ARR /;"	d
+KC_LEFT_CTRL	incs/keycodes.h	/^# define KC_LEFT_CTRL /;"	d
+KC_LEFT_SHIFT	incs/keycodes.h	/^# define KC_LEFT_SHIFT /;"	d
+KC_M	incs/keycodes.h	/^# define KC_M /;"	d
+KC_N	incs/keycodes.h	/^# define KC_N /;"	d
+KC_O	incs/keycodes.h	/^# define KC_O /;"	d
+KC_P	incs/keycodes.h	/^# define KC_P /;"	d
+KC_Q	incs/keycodes.h	/^# define KC_Q /;"	d
+KC_R	incs/keycodes.h	/^# define KC_R /;"	d
+KC_RIGHT_ARR	incs/keycodes.h	/^# define KC_RIGHT_ARR /;"	d
+KC_RIGHT_CTRL	incs/keycodes.h	/^# define KC_RIGHT_CTRL /;"	d
+KC_RIGHT_SHIFT	incs/keycodes.h	/^# define KC_RIGHT_SHIFT /;"	d
+KC_S	incs/keycodes.h	/^# define KC_S /;"	d
+KC_T	incs/keycodes.h	/^# define KC_T /;"	d
+KC_U	incs/keycodes.h	/^# define KC_U /;"	d
+KC_UP_ARR	incs/keycodes.h	/^# define KC_UP_ARR /;"	d
+KC_V	incs/keycodes.h	/^# define KC_V /;"	d
+KC_W	incs/keycodes.h	/^# define KC_W /;"	d
+KC_X	incs/keycodes.h	/^# define KC_X /;"	d
+KC_Y	incs/keycodes.h	/^# define KC_Y /;"	d
+KC_Z	incs/keycodes.h	/^# define KC_Z /;"	d
+KEYCODES_H	incs/keycodes.h	/^# define KEYCODES_H$/;"	d
 LIBFT_H	libft/incs/libft.h	/^# define LIBFT_H$/;"	d
 LIBS	Makefile	/^LIBS	= minilibx libft$/;"	m
 MAIN_STRUCTS_H	incs/main_structs.h	/^# define MAIN_STRUCTS_H$/;"	d
@@ -133,8 +168,6 @@ func_t	minilibx/mlx_int.h	/^typedef int (*func_t)();$/;"	t
 get_arg	libft/srcs/io/ft_getopt.c	/^int	get_arg(t_opt *opt, int argc, char *argv[], char **nextchar)$/;"	f
 get_color	srcs/draw.c	/^int	get_color(int width, int height, t_config *config)$/;"	f
 get_color_value	srcs/color_functions.c	/^int	get_color_value(int r, int g, int b)$/;"	f
-get_color_value	srcs/colors.c	/^int	get_color_value(int r, int g, int b)$/;"	f
-get_color_value_double	srcs/colors.c	/^int	get_color_value_double(double r, double g, double b)$/;"	f
 get_coordinates	srcs/calculate_fractal.c	/^t_complex	get_coordinates(int x, int y, t_ivector2 screen_size)$/;"	f
 get_iteration_count	srcs/calculate_fractal.c	/^int	get_iteration_count(t_complex coordinates, double escape_value,$/;"	f
 get_next_line	libft/srcs/io/get_next_line.c	/^int			get_next_line(int fd, char **line)$/;"	f
@@ -143,8 +176,6 @@ glsl_info_s	minilibx/mlx_int.h	/^typedef struct	glsl_info_s$/;"	s
 glsl_info_t	minilibx/mlx_int.h	/^} glsl_info_t;$/;"	t	typeref:struct:glsl_info_s
 height	minilibx/font.c	/^  unsigned int 	 height;$/;"	m	struct:__anon1	file:
 height	minilibx/mlx_int.h	/^  int			height;$/;"	m	struct:mlx_img_list_s
-hsv_is_valid	srcs/colors.c	/^static bool	hsv_is_valid(double hue, double sat, double val)$/;"	f	file:
-hsv_to_rgb	srcs/colors.c	/^int hsv_to_rgb(double hue, double sat, double val)$/;"	f
 i	incs/useful_structs.h	/^	double	i;$/;"	m	struct:s_complex
 image_fshader	minilibx/mlx_int.h	/^  GLuint	image_fshader;$/;"	m	struct:glsl_info_s
 image_program	minilibx/mlx_int.h	/^  GLuint	image_program;$/;"	m	struct:glsl_info_s
@@ -159,6 +190,7 @@ initialize	libft/srcs/io/ft_getopt.c	/^char	*initialize(t_opt *options)$/;"	f
 initialize_config	srcs/config_initialisation.c	/^bool	initialize_config(t_config *config, char **argv)$/;"	f
 initialize_mlx_stuff	srcs/config_initialisation.c	/^static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)$/;"	f	file:
 is_in_set	libft/srcs/str/ft_strtrim.c	/^static bool	is_in_set(char c, char const *set)$/;"	f	file:
+key_press	srcs/main.c	/^int	key_press(int keycode, void *param)$/;"	f
 loc_font_atlassize	minilibx/mlx_int.h	/^  GLint		loc_font_atlassize;$/;"	m	struct:glsl_info_s
 loc_font_color	minilibx/mlx_int.h	/^  GLint		loc_font_color;$/;"	m	struct:glsl_info_s
 loc_font_posinatlas	minilibx/mlx_int.h	/^  GLint		loc_font_posinatlas;$/;"	m	struct:glsl_info_s
