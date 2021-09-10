@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 12:25:12 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/10 13:49:58 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include <math.h>
 #include <stdio.h>
 
-int	get_iteration_count(t_complex coordinates, double escape_value,
-		int max_iterations)
+static int	get_mandelbrot(t_complex coordinates, t_algorithm *algo)
 {
 	t_complex	z;
 	t_complex	tmp;
@@ -25,8 +24,8 @@ int	get_iteration_count(t_complex coordinates, double escape_value,
 	z.r = 0;
 	z.i = 0;
 	current_count = 0;
-	while (pow(z.r, 2) + pow(z.i, 2) <= pow(escape_value, 2)
-		&& current_count < max_iterations)
+	while (pow(z.r, 2) + pow(z.i, 2) <= pow(algo->escape_value, 2)
+		&& current_count < algo->max_iteration)
 	{
 		tmp.r = pow(z.r, 2) - pow(z.i, 2) + coordinates.r;
 		tmp.i = z.r * z.i * 2.0 + coordinates.i;
@@ -34,7 +33,42 @@ int	get_iteration_count(t_complex coordinates, double escape_value,
 		z.i = tmp.i;
 		current_count++;
 	}
+	if (current_count == algo->max_iteration)
+		return (0);
 	return (current_count);
+}
+
+static int	get_julia(t_complex coordinates, t_algorithm *algo)
+{
+	/* t_complex	z; */
+	/* t_complex	tmp; */
+	int			current_count;
+
+	current_count = 0;
+	coordinates.r = 0;
+	/* while (zx * zx + zy * zy < R**2  AND  current_count < algo->max_iteration) */ 
+	/* { */
+	/* 	xtemp = zx * zx - zy * zy */
+	/* 		zy = 2 * zx * zy  + cy */ 
+	/* 		zx = xtemp + cx */
+
+	/* 		iteration = iteration + 1 */ 
+	/* } */
+
+	if (current_count == algo->max_iteration)
+		return (0);
+	else
+		return (current_count);
+}
+
+int	get_iteration_count(t_complex coordinates, t_algorithm *algo)
+{
+	if (algo->type == MANDELBROT)
+		return (get_mandelbrot(coordinates, algo));
+	else if (algo->type == JULIA)
+		return (get_julia(coordinates, algo));
+	else
+		return (-1);
 }
 
 t_complex	get_coordinates(t_ivector2 screen_coord, t_ivector2 screen_size,

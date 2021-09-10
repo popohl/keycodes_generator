@@ -23,9 +23,11 @@ GNL_ERROR	libft/srcs/io/get_next_line.c	/^#define GNL_ERROR /;"	d	file:
 GNL_LINE	libft/srcs/io/get_next_line.c	/^#define GNL_LINE /;"	d	file:
 I	Makefile	/^I		= incs\/$/;"	m
 INCLUDES	libft/Makefile	/^INCLUDES	= incs$/;"	m
+JULIA	incs/main_structs.h	/^	JULIA$/;"	e	enum:e_algorithm_type
 LIBFT_H	libft/incs/libft.h	/^# define LIBFT_H$/;"	d
 LIBS	Makefile	/^LIBS	= minilibx libft$/;"	m
 MAIN_STRUCTS_H	incs/main_structs.h	/^# define MAIN_STRUCTS_H$/;"	d
+MANDELBROT	incs/main_structs.h	/^	MANDELBROT = 0,$/;"	e	enum:e_algorithm_type
 MAX_EVENT	minilibx/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
 MLX_H	minilibx/mlx.h	/^#define	MLX_H$/;"	d
@@ -62,6 +64,7 @@ count_words	libft/srcs/str/ft_split.c	/^static int	count_words(const char *str, 
 data	incs/main_structs.h	/^	int			*data;$/;"	m	struct:s_image_info
 display_log	minilibx/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
 draw_fractal	srcs/draw.c	/^void	draw_fractal(t_config *config)$/;"	f
+e_algorithm_type	incs/main_structs.h	/^enum	e_algorithm_type$/;"	g
 empty_string	libft/srcs/str/ft_substr.c	/^static char	*empty_string(void)$/;"	f	file:
 endian	incs/main_structs.h	/^	int			endian;$/;"	m	struct:s_image_info
 error	libft/srcs/io/ft_getopt.c	/^int	error(char *prog_name, char c, t_opt *opt, int mode)$/;"	f
@@ -133,10 +136,10 @@ func_t	minilibx/mlx_int.h	/^typedef int (*func_t)();$/;"	t
 get_arg	libft/srcs/io/ft_getopt.c	/^int	get_arg(t_opt *opt, int argc, char *argv[], char **nextchar)$/;"	f
 get_color	srcs/draw.c	/^int	get_color(int width, int height, t_config *cfg)$/;"	f
 get_color_value	srcs/color_functions.c	/^int	get_color_value(int r, int g, int b)$/;"	f
-get_color_value	srcs/colors.c	/^int	get_color_value(int r, int g, int b)$/;"	f
-get_color_value_double	srcs/colors.c	/^int	get_color_value_double(double r, double g, double b)$/;"	f
 get_coordinates	srcs/calculate_fractal.c	/^t_complex	get_coordinates(t_ivector2 screen_coord, t_ivector2 screen_size,$/;"	f
-get_iteration_count	srcs/calculate_fractal.c	/^int	get_iteration_count(t_complex coordinates, double escape_value,$/;"	f
+get_iteration_count	srcs/calculate_fractal.c	/^int	get_iteration_count(t_complex coordinates, t_algorithm *algo)$/;"	f
+get_julia	srcs/calculate_fractal.c	/^static int	get_julia(t_complex coordinates, t_algorithm *algo)$/;"	f	file:
+get_mandelbrot	srcs/calculate_fractal.c	/^static int	get_mandelbrot(t_complex coordinates, t_algorithm *algo)$/;"	f	file:
 get_next_line	libft/srcs/io/get_next_line.c	/^int			get_next_line(int fd, char **line)$/;"	f
 get_word_end	libft/srcs/str/ft_split.c	/^static int	get_word_end(const char *str, char separator, int i)$/;"	f	file:
 glsl_info_s	minilibx/mlx_int.h	/^typedef struct	glsl_info_s$/;"	s
@@ -144,8 +147,6 @@ glsl_info_t	minilibx/mlx_int.h	/^} glsl_info_t;$/;"	t	typeref:struct:glsl_info_s
 height	incs/main_structs.h	/^	double		height;$/;"	m	struct:s_world_screen
 height	minilibx/font.c	/^  unsigned int 	 height;$/;"	m	struct:__anon1	file:
 height	minilibx/mlx_int.h	/^  int			height;$/;"	m	struct:mlx_img_list_s
-hsv_is_valid	srcs/colors.c	/^static bool	hsv_is_valid(double hue, double sat, double val)$/;"	f	file:
-hsv_to_rgb	srcs/colors.c	/^int hsv_to_rgb(double hue, double sat, double val)$/;"	f
 i	incs/useful_structs.h	/^	double	i;$/;"	m	struct:s_complex
 image_fshader	minilibx/mlx_int.h	/^  GLuint	image_fshader;$/;"	m	struct:glsl_info_s
 image_program	minilibx/mlx_int.h	/^  GLuint	image_program;$/;"	m	struct:glsl_info_s
@@ -180,7 +181,7 @@ loop_hook_data	minilibx/mlx_int.h	/^  void			*loop_hook_data;$/;"	m	struct:mlx_p
 loop_timer	minilibx/mlx_int.h	/^  void			*loop_timer;$/;"	m	struct:mlx_ptr_s
 main	srcs/main.c	/^int	main(int argc, char **argv)$/;"	f
 main_loop_active	minilibx/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
-max_iterations	incs/main_structs.h	/^	double	max_iterations;$/;"	m	struct:s_algorithm
+max_iteration	incs/main_structs.h	/^	double	max_iteration;$/;"	m	struct:s_algorithm
 mlx	incs/main_structs.h	/^	t_mlx_params	mlx;$/;"	m	struct:s_config
 mlx_col_name	minilibx/mlx_rgb.c	/^struct s_col_name mlx_col_name[] =$/;"	v	typeref:struct:s_col_name
 mlx_img_ctx_s	minilibx/mlx_int.h	/^typedef struct	mlx_img_ctx_s$/;"	s
@@ -258,6 +259,7 @@ t_opt	libft/incs/ft_getopt.h	/^}	t_opt;$/;"	t	typeref:struct:s_opt
 t_world_screen	incs/main_structs.h	/^}	t_world_screen;$/;"	t	typeref:struct:s_world_screen
 t_xpm_col	minilibx/mlx_xpm.c	/^} t_xpm_col;$/;"	t	typeref:struct:s_xpm_col	file:
 texture	minilibx/mlx_int.h	/^  GLuint		texture;$/;"	m	struct:mlx_img_ctx_s
+type	incs/main_structs.h	/^	int		type;$/;"	m	struct:s_algorithm
 vbuffer	minilibx/mlx_int.h	/^  GLuint		vbuffer;$/;"	m	struct:mlx_img_ctx_s
 vertexes	minilibx/mlx_int.h	/^  GLfloat		vertexes[8];$/;"	m	struct:mlx_img_list_s
 vscreen	incs/main_structs.h	/^	t_world_screen	vscreen;$/;"	m	struct:s_config

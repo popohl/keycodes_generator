@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 11:58:31 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/10 13:48:39 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define MAIN_STRUCTS_H
 
 # include "useful_structs.h"
+
+enum	e_algorithm_type
+{
+	MANDELBROT = 0,
+	JULIA
+};
 
 typedef struct	s_image_info
 {
@@ -41,7 +47,8 @@ typedef	struct s_mlx_params
 typedef struct s_algorithm
 {
 	double	escape_value;
-	double	max_iterations;
+	double	max_iteration;
+	int		type;
 }	t_algorithm;
 
 typedef struct s_config

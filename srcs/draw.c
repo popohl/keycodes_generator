@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/10 11:51:00 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/10 13:52:15 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	get_color(int width, int height, t_config *cfg)
 	screen_coord.x = width;
 	screen_coord.y = height;
 	coordinates = get_coordinates(screen_coord, cfg->img.size, &cfg->vscreen);
-	iterations = get_iteration_count(coordinates,
-			cfg->algo.escape_value, cfg->algo.max_iterations);
-	red_value = cfg->algo.max_iterations / (double)iterations * 255;
+	iterations = get_iteration_count(coordinates, &cfg->algo);
+	red_value = cfg->algo.max_iteration / (double)iterations * 255;
 	return (get_color_value(red_value, 0, 0));
 }
 
