@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 11:32:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/07 15:52:40 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/10 19:26:02 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,74 @@
 #include "checkers.h"
 #include "draw.h"
 #include "keycodes.h"
+#include <stdlib.h>
 
 int	key_press(int keycode, void *param)
 {
+	t_config	*config;
+
+	config = param;
 	if (keycode == KC_H)
 	{
-		printf("hi!\n");
+		config->wscreen.origin.r -= config->wscreen.width / 10;
+		draw_fractal(config);
+	}
+	if (keycode == KC_J)
+	{
+		config->wscreen.origin.i -= config->wscreen.width / 10;
+		draw_fractal(config);
+	}
+	if (keycode == KC_K)
+	{
+		config->wscreen.origin.i += config->wscreen.width / 10;
+		draw_fractal(config);
+	}
+	if (keycode == KC_L)
+	{
+		config->wscreen.origin.r += config->wscreen.width / 10;
+		draw_fractal(config);
+	}
+	if (keycode == KC_U)
+	{
+		config->wscreen.width /= 1.5;
+		config->wscreen.height = config->wscreen.width *
+			((double)config->img.size.y/ config->img.size.x);
+		draw_fractal(config);
+	}
+	if (keycode == KC_I)
+	{
+		config->wscreen.width *= 1.5;
+		config->wscreen.height = config->wscreen.width *
+			((double)config->img.size.y/ config->img.size.x);
+		draw_fractal(config);
+	}
+	if (keycode == KC_UP_ARR)
+	{
+		config->algo.max_iteration += 100;
+		draw_fractal(config);
+	}
+	if (keycode == KC_DOWN_ARR)
+	{
+		config->algo.max_iteration -= 100;
+		draw_fractal(config);
+	}
+	if (keycode == KC_LEFT_ARR)
+	{
+		config->algo.escape_value -= 0.1;
+		draw_fractal(config);
+	}
+	if (keycode == KC_RIGHT_ARR)
+	{
+		config->algo.escape_value += 0.1;
+		draw_fractal(config);
+	}
+	if (keycode == KC_SPACE)
+	{
+		draw_fractal(config);
+	}
+	if (keycode == KC_Q)
+	{
+		exit(0);
 	}
 	return (0);
 }

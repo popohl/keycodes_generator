@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 13:48:39 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/10 19:05:58 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_config
 	t_mlx_params	mlx;
 	t_image_info	img;
 	t_algorithm		algo;
-	t_world_screen	vscreen;
+	t_world_screen	wscreen;
 }	t_config;
 
 #endif
