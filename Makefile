@@ -19,7 +19,7 @@ LIBS	= minilibx libft
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra -fsanitize=address -g3
+CFLAGS	+= -Wall -Wextra -Ofast# -fsanitize=address -g3
 # Assembly flags (add the libraries here for linux)
 LDFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 

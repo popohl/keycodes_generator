@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/14 10:48:57 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 19:22:03 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 enum	e_algorithm_type
 {
 	MANDELBROT = 0,
-	JULIA
+	JULIA,
+	BURNING_SHIP
 };
 
 typedef struct	s_image_info

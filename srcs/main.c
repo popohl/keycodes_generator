@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 11:32:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/14 13:28:10 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 19:26:06 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	exit_program(t_config *config)
 	mlx_destroy_image(config->mlx.mlx_ptr, config->mlx.win_ptr); 
 	/* mlx_destroy_window(config->mlx.mlx_ptr, config->mlx.win_ptr); */ 
 	exit(0);
+}
+
+int close(void *param)
+{
+	exit_program((t_config *)param);
+	return (0);
 }
 
 int	key_press(int keycode, void *param)
@@ -54,36 +60,32 @@ int	key_press(int keycode, void *param)
 	}
 	if (keycode == KC_U)
 	{
-		config->wscreen.width /= 1.5;
-		config->wscreen.height = config->wscreen.width *
-			((double)config->img.size.y/ config->img.size.x);
+		set_wscreen_width(config, config->wscreen.width /= 1.1);
 		draw_fractal(config);
 	}
 	if (keycode == KC_I)
 	{
-		config->wscreen.width *= 1.5;
-		config->wscreen.height = config->wscreen.width *
-			((double)config->img.size.y/ config->img.size.x);
+		set_wscreen_width(config, config->wscreen.width *= 1.1);
 		draw_fractal(config);
 	}
 	if (keycode == KC_W)
 	{
-		config->algo.julia_constant.i += 0.05;
+		config->algo.julia_constant.i += 0.02;
 		draw_fractal(config);
 	}
 	if (keycode == KC_S)
 	{
-		config->algo.julia_constant.i -= 0.05;
+		config->algo.julia_constant.i -= 0.02;
 		draw_fractal(config);
 	}
 	if (keycode == KC_A)
 	{
-		config->algo.julia_constant.r -= 0.05;
+		config->algo.julia_constant.r -= 0.02;
 		draw_fractal(config);
 	}
 	if (keycode == KC_D)
 	{
-		config->algo.julia_constant.r += 0.05;
+		config->algo.julia_constant.r += 0.02;
 		draw_fractal(config);
 	}
 	if (keycode == KC_UP_ARR)
@@ -100,18 +102,19 @@ int	key_press(int keycode, void *param)
 	{
 		config->algo.type--;
 		if (config->algo.type < 0)
-			config->algo.type = 1;
+			config->algo.type = 2;
 		draw_fractal(config);
 	}
 	if (keycode == KC_RIGHT_ARR)
 	{
 		config->algo.type++;
-		if (config->algo.type > 1)
+		if (config->algo.type > 2)
 			config->algo.type = 0;
 		draw_fractal(config);
 	}
-	if (keycode == KC_SPACE)
+	if (keycode == KC_R)
 	{
+		set_wscreen_width(config, 4.0);
 		draw_fractal(config);
 	}
 	if (keycode == KC_Q)
@@ -141,6 +144,26 @@ int mouse_move(int x, int y, void *param)
 	return (0);
 }
 
+int	mouse_press(int button, int x, int y, void *param)
+{
+	t_config	*config;
+
+	config = param;
+	x = 0;
+	y = 0;
+	if (button == 4)
+	{
+		set_wscreen_width(config, config->wscreen.width /= 1.1);
+		draw_fractal(config);
+	}
+	if (button == 5)
+	{
+		set_wscreen_width(config, config->wscreen.width *= 1.1);
+		draw_fractal(config);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_config	config;
@@ -151,7 +174,9 @@ int	main(int argc, char **argv)
 		return (1);
 	draw_fractal(&config);
 	mlx_hook(config.mlx.win_ptr, 2, 1L<<0, key_press, &config);
-	mlx_hook(config.mlx.win_ptr, 6, 1L<<13, mouse_move, &config);
+	mlx_hook(config.mlx.win_ptr, 4, 1L<<2, mouse_press, &config);
+	mlx_hook(config.mlx.win_ptr, 17, 1L<<0, close, &config);
+	/* mlx_hook(config.mlx.win_ptr, 6, 1L<<13, mouse_move, &config); */
 	mlx_loop(config.mlx.mlx_ptr);
 	return (0);
 }
