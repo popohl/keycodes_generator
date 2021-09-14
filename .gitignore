@@ -2,4 +2,5 @@ fractol
 *.o
 *.d
 *.a
+minilibx/libmlx.a
 tags

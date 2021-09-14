@@ -19,7 +19,7 @@ LIBS	= minilibx libft
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra -Ofast
+CFLAGS	+= -Wall -Wextra -fsanitize=address -g3
 # Assembly flags (add the libraries here for linux)
 LDFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 
@@ -59,9 +59,9 @@ $(DEPS): $D%.d: $S%
 
 $(NAME): $(OBJS)
 	@echo "Building external libraries"
-	@$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
+	$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
 	@echo "Assembling $(NAME)"
-	@$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 clean:
 	@echo "Cleaning up..."

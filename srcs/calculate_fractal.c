@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 13:49:58 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/14 07:40:59 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,24 @@ static int	get_mandelbrot(t_complex coordinates, t_algorithm *algo)
 
 static int	get_julia(t_complex coordinates, t_algorithm *algo)
 {
-	/* t_complex	z; */
-	/* t_complex	tmp; */
+	t_complex	tmp;
 	int			current_count;
 
 	current_count = 0;
-	coordinates.r = 0;
-	/* while (zx * zx + zy * zy < R**2  AND  current_count < algo->max_iteration) */ 
-	/* { */
-	/* 	xtemp = zx * zx - zy * zy */
-	/* 		zy = 2 * zx * zy  + cy */ 
-	/* 		zx = xtemp + cx */
-
-	/* 		iteration = iteration + 1 */ 
-	/* } */
-
+	while (pow(coordinates.r, 2) + pow(coordinates.i, 2)
+		<= pow(algo->escape_value, 2)
+		&& current_count < algo->max_iteration)
+	{
+		tmp.r = pow(coordinates.r, 2) - pow(coordinates.i, 2)
+			+ algo->julia_constant.r;
+		tmp.i = coordinates.r * coordinates.i * 2.0 + algo->julia_constant.i;
+		coordinates.r = tmp.r;
+		coordinates.i = tmp.i;
+		current_count++;
+	}
 	if (current_count == algo->max_iteration)
 		return (0);
-	else
-		return (current_count);
+	return (current_count);
 }
 
 int	get_iteration_count(t_complex coordinates, t_algorithm *algo)

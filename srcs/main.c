@@ -6,19 +6,26 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 11:32:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 19:26:02 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 13:28:10 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 #include "main_structs.h"
 #include "various_shit.h"
-#include "mlx.h"
 #include "config_initialisation.h"
 #include "checkers.h"
 #include "draw.h"
 #include "keycodes.h"
+#include "mlx.h"
 #include <stdlib.h>
+
+void	exit_program(t_config *config)
+{
+	mlx_destroy_image(config->mlx.mlx_ptr, config->mlx.win_ptr); 
+	/* mlx_destroy_window(config->mlx.mlx_ptr, config->mlx.win_ptr); */ 
+	exit(0);
+}
 
 int	key_press(int keycode, void *param)
 {
@@ -59,6 +66,26 @@ int	key_press(int keycode, void *param)
 			((double)config->img.size.y/ config->img.size.x);
 		draw_fractal(config);
 	}
+	if (keycode == KC_W)
+	{
+		config->algo.julia_constant.i += 0.05;
+		draw_fractal(config);
+	}
+	if (keycode == KC_S)
+	{
+		config->algo.julia_constant.i -= 0.05;
+		draw_fractal(config);
+	}
+	if (keycode == KC_A)
+	{
+		config->algo.julia_constant.r -= 0.05;
+		draw_fractal(config);
+	}
+	if (keycode == KC_D)
+	{
+		config->algo.julia_constant.r += 0.05;
+		draw_fractal(config);
+	}
 	if (keycode == KC_UP_ARR)
 	{
 		config->algo.max_iteration += 100;
@@ -71,12 +98,16 @@ int	key_press(int keycode, void *param)
 	}
 	if (keycode == KC_LEFT_ARR)
 	{
-		config->algo.escape_value -= 0.1;
+		config->algo.type--;
+		if (config->algo.type < 0)
+			config->algo.type = 1;
 		draw_fractal(config);
 	}
 	if (keycode == KC_RIGHT_ARR)
 	{
-		config->algo.escape_value += 0.1;
+		config->algo.type++;
+		if (config->algo.type > 1)
+			config->algo.type = 0;
 		draw_fractal(config);
 	}
 	if (keycode == KC_SPACE)
@@ -85,8 +116,28 @@ int	key_press(int keycode, void *param)
 	}
 	if (keycode == KC_Q)
 	{
-		exit(0);
+		exit_program(config);
 	}
+	return (0);
+}
+
+int mouse_move(int x, int y, void *param)
+{
+	t_config	*config;
+	t_ivector2	screen_coord;
+	t_complex	world_coordinates;
+	unsigned int	iterations;
+	int				red_value;
+
+	config = (t_config *)param;
+	screen_coord.x = x;
+	screen_coord.y = y;
+	world_coordinates = get_coordinates(screen_coord, config->img.size,
+			&config->wscreen);
+	iterations = get_iteration_count(world_coordinates, &config->algo);
+	red_value = ((double)iterations / config->algo.max_iteration) * 255;
+	printf("(%d, %d) => (%f, %f) = %d its / %f max; red: %d\n", x, y, world_coordinates.r,
+			world_coordinates.i, iterations, config->algo.max_iteration, red_value);
 	return (0);
 }
 
@@ -99,8 +150,15 @@ int	main(int argc, char **argv)
 	if (!initialize_config(&config, argv))
 		return (1);
 	draw_fractal(&config);
-	/* mlx_string_put(config.mlx.mlx_ptr, config.mlx.win_ptr, 50, 50, 0x00ffffff, "Hi there!"); */
 	mlx_hook(config.mlx.win_ptr, 2, 1L<<0, key_press, &config);
+	mlx_hook(config.mlx.win_ptr, 6, 1L<<13, mouse_move, &config);
 	mlx_loop(config.mlx.mlx_ptr);
 	return (0);
+}
+
+void name_of_function() __attribute__((destructor));
+
+void name_of_function()
+{
+    system("leaks fractol");
 }

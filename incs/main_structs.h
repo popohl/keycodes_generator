@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 19:05:58 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 10:48:57 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_image_info
 typedef struct	s_world_screen
 {
 	t_complex	origin;
-	double		width;
-	double		height;
+	long double		width;
+	long double		height;
 }	t_world_screen;
 
 typedef	struct s_mlx_params
@@ -46,9 +46,10 @@ typedef	struct s_mlx_params
 
 typedef struct s_algorithm
 {
-	double	escape_value;
-	double	max_iteration;
-	int		type;
+	double		escape_value;
+	double		max_iteration;
+	t_complex	julia_constant;
+	int			type;
 }	t_algorithm;
 
 typedef struct s_config

@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/10 19:09:29 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 09:50:10 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)
 
 bool	initialize_config(t_config *config, char **argv)
 {
-	config->img.size.x = 1360;
+	config->img.size.x = 800;
 	config->img.size.y = 800;
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
 		return (false);
-	config->algo.type = MANDELBROT;
+	config->algo.type = JULIA;
 	config->algo.escape_value = 2.0;
 	config->algo.max_iteration = 100;
+	config->algo.julia_constant.r = 0.0;
+	config->algo.julia_constant.i = 0.0;
 	config->wscreen.origin.r = 0;
 	config->wscreen.origin.i = 0;
 	config->wscreen.width = config->algo.escape_value * 2;

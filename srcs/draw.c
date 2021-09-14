@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/10 19:34:13 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/14 13:12:05 by paulohl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,8 @@ int	get_color(int width, int height, t_config *cfg)
 	screen_coord.y = height;
 	coordinates = get_coordinates(screen_coord, cfg->img.size, &cfg->wscreen);
 	iterations = get_iteration_count(coordinates, &cfg->algo);
-	red_value = cfg->algo.max_iteration / (double)iterations * 255;
-	return (get_color_value(red_value, 0, 0));
-}
-
-void	reset_screen(t_image_info *img)
-{
-	int	i;
-	int	length;
-
-	i = 0;
-	length = img->size.x * img->size.y;
-	while (i < length)
-	{
-		img->data[i] = get_color_value(0, 0, 0);
-		i++;
-	}
+	red_value = ((double)iterations / cfg->algo.max_iteration) * 255;
+	return (get_color_value(0, red_value, 0));
 }
 
 void	draw_fractal(t_config *config)
@@ -50,7 +36,9 @@ void	draw_fractal(t_config *config)
 	int				height;
 	int				width;
 
-	reset_screen(&config->img);
+	mlx_clear_window(config->mlx.mlx_ptr, config->mlx.win_ptr);
+	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
+		config->img.img_ptr, 0, 0);
 	height = 0;
 	while (height < config->img.size.y)
 	{
