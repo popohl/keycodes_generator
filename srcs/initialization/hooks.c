@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/16 15:55:24 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 15:45:52 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	key_press(int keycode, void *param)
 		cfg->algo.julia_constant -= 0.01;
 	if (keycode == KC_D)
 		cfg->algo.julia_constant += 0.01;
+	if (keycode == KC_R)
+		cfg->algo.julia_constant = 0;
 	if (keycode == KC_POINT)
 		cfg->algo.max_iteration += 50;
 	if (keycode == KC_COMMA)
@@ -109,6 +111,8 @@ int	key_press(int keycode, void *param)
 	if (keycode == KC_3)
 		cfg->algo.type = BURNING_SHIP;
 	if (keycode == KC_4)
+		cfg->algo.type = BURNING_JULIA;
+	if (keycode == KC_5)
 		cfg->algo.type = INVERSE_MANDELBROT;
 	if (keycode == KC_Q || keycode == KC_ESCAPE)
 		close(cfg);
