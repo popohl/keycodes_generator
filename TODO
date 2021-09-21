@@ -1,1 +1,3 @@
 in config_initialisation.c: Replace ugly *chiffres* with argv
+when zooming, focus on the mouse if scrolling, on the center if using +/-
+HUD
