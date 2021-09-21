@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/16 15:47:03 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 15:29:12 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,22 @@ static int	get_julia(double complex coordinates, t_algorithm *algo)
 
 static int	get_burning_ship(double complex coordinates, t_algorithm *algo)
 {
-	double complex	z;
+	t_dvect2	z;
+	t_dvect2	tmp;
 	int			current_count;
 
-	z = 0.0;
+	z.x = 0;
+	z.y = 0;
 	current_count = 0;
-	while (cabs(z) <= ESCAPE_VALUE && current_count < algo->max_iteration)
+	while (pow(fabs(z.x), 2) + pow(fabs(z.y), 2) <= 4
+		&& current_count < algo->max_iteration)
 	{
-		z = pow(fabs(creal(z)) + fabs(cimag(z)) * I, 2) + coordinates;
+		z.x = fabs(z.x);
+		z.y = fabs(z.y);
+		tmp.x = pow(z.x, 2) - pow(z.y, 2) + creal(coordinates);
+		tmp.y = z.x * z.y * 2.0 + cimag(coordinates);
+		z.x = tmp.x;
+		z.y = tmp.y;
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
