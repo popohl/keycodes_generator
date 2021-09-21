@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   various_shit.h                                     :+:      :+:    :+:   */
+/*   initialization.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/24 17:55:30 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/10 13:52:10 by pohl             ###   ########.fr       */
+/*   Created: 2021/09/16 13:43:39 by pohl              #+#    #+#             */
+/*   Updated: 2021/09/16 14:02:50 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARIOUS_SHIT_H
-# define VARIOUS_SHIT_H
+#ifndef INITIALIZATION_H
+# define INITIALIZATION_H
 
 # include <stdbool.h>
-# include "main_structs.h"
 
-# define ERROR -1
+/*
+** hooks.c
+*/
 
-t_complex	get_coordinates(t_ivector2 screen_coord, t_ivector2 screen_size,
-		t_world_screen *world_screen);
-int	get_iteration_count(t_complex coordinates, t_algorithm *algo);
-int	get_color_value(int r, int g, int b);
+void	create_hooks(t_config *config);
+
+/*
+** checkers.c
+*/
+
+bool	are_args_valid(int argc, char **argv);
+
+/*
+** checkers.c
+*/
+
+bool	initialize_config(t_config *config, char **argv);
 
 #endif

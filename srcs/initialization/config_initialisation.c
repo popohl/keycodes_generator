@@ -6,14 +6,14 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/14 19:22:21 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/16 15:30:22 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include "main_structs.h"
-#include "various_shit.h"
+#include <stdbool.h>
 #include "mlx.h"
+#include "config.h"
+#include "algorithms.h"
 
 static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)
 {
@@ -35,28 +35,17 @@ static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)
 	return (true);
 }
 
-void	set_wscreen_width(t_config *config, double width)
-{
-	double	ratio;
-
-	ratio = (double)config->img.size.y / (double)config->img.size.x;
-	config->wscreen.width = width;
-	config->wscreen.height = config->wscreen.width * ratio;
-}
-
 bool	initialize_config(t_config *config, char **argv)
 {
-	config->img.size.x = 1300;
-	config->img.size.y = 800;
+	config->img.size.x = 1280;
+	config->img.size.y = 720;
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
 		return (false);
 	config->algo.type = MANDELBROT;
-	config->algo.escape_value = 2.0;
 	config->algo.max_iteration = 100;
-	config->algo.julia_constant.r = 0.0;
-	config->algo.julia_constant.i = 0.0;
-	config->wscreen.origin.r = 0;
-	config->wscreen.origin.i = 0;
+	config->algo.julia_constant = 0.0;
+	config->wscreen.origin.x = 0;
+	config->wscreen.origin.y = 0;
 	set_wscreen_width(config, 4.0);
 	argv = NULL;
 	return (true);

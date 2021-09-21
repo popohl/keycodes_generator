@@ -6,20 +6,30 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/14 16:46:22 by paulohl          ###   ########.fr       */
+/*   Updated: 2021/09/16 15:55:22 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
-#include "main_structs.h"
-#include "various_shit.h"
 #include "mlx.h"
+#include "config.h"
+#include "algorithms.h"
+
+int	get_int_color_from_rgb(int r, int g, int b)
+{
+	int		color;
+
+	color = 0;
+	color = color | (r << 16);
+	color = color | (g << 8);
+	color = color | b;
+	return (color);
+}
 
 double calculate_percentage(int width, int height, t_config *cfg)
 {
-	t_complex		coordinates;
+	double complex	coordinates;
 	unsigned int	iterations;
-	t_ivector2		screen_coord;
+	t_ivect2		screen_coord;
 
 	screen_coord.x = width;
 	screen_coord.y = height;
@@ -49,7 +59,7 @@ int	get_color(int width, int height, t_config *cfg)
 	{
 		green = ((percentage - 0.6) / 0.4) * 255;
 	}
-	return (get_color_value(red, green, blue));
+	return (get_int_color_from_rgb(red, green, blue));
 }
 
 void	draw_fractal(t_config *config)

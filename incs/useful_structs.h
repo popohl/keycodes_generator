@@ -6,23 +6,23 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:36:30 by pohl              #+#    #+#             */
-/*   Updated: 2021/08/14 16:32:40 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/16 15:30:56 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef USEFUL_STRUCTS_H
 # define USEFUL_STRUCTS_H
 
-typedef struct	s_ivector2
+typedef struct	s_ivect2
 {
 	int	x;
 	int	y;
-}	t_ivector2;
+}	t_ivect2;
 
-typedef struct	s_complex
+typedef struct	s_dvect2
 {
-	double	r;
-	double	i;
-}	t_complex;
+	double	x;
+	double	y;
+}	t_dvect2;
 
 #endif

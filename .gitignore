@@ -4,3 +4,4 @@ fractol
 *.a
 minilibx/libmlx.a
 tags
+.DS_Store

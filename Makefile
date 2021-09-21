@@ -11,7 +11,11 @@ D		= deps/
 NAME	= fractol
 
 # list of your source files
-SRCS	= main.c color_functions.c calculate_fractal.c config_initialisation.c checkers.c draw.c
+SRCS	= main.c \
+		  algorithms/calculate_fractal.c algorithms/values_updating.c \
+		  initialization/config_initialisation.c initialization/checkers.c \
+		  initialization/hooks.c \
+		  draw/draw.c
 
 # list of external libraries
 LIBS	= minilibx libft
@@ -45,6 +49,7 @@ $O:
 $(OBJS): | $O
 
 $(OBJS): $O%.o: $S%
+	@mkdir -p $(@D)
 	@echo "Compiling $^: "
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "✓"
@@ -55,6 +60,7 @@ $D:
 $(DEPS): | $D
 
 $(DEPS): $D%.d: $S%
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
 
 $(NAME): $(OBJS)
