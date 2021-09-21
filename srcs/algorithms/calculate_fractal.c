@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/16 15:47:03 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 15:02:57 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	get_burning_ship(double complex coordinates, t_algorithm *algo)
 	current_count = 0;
 	while (cabs(z) <= ESCAPE_VALUE && current_count < algo->max_iteration)
 	{
-		z = pow(fabs(creal(z)) + fabs(cimag(z)) * I, 2) + coordinates;
+		z = cpow(fabs(creal(z)) + fabs(cimag(z)) * I, 2) + coordinates;
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
