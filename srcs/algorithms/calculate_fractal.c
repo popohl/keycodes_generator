@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 15:29:12 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 15:45:36 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,31 @@ static int	get_julia(double complex coordinates, t_algorithm *algo)
 	while (cabs(coordinates) <= ESCAPE_VALUE && current_count < algo->max_iteration)
 	{
 		coordinates = coordinates * coordinates + algo->julia_constant;
+		current_count++;
+	}
+	if (current_count == algo->max_iteration)
+		return (0);
+	return (current_count);
+}
+
+static int	get_burning_julia(double complex coordinates, t_algorithm *algo)
+{
+	t_dvect2	z;
+	t_dvect2	tmp;
+	int			current_count;
+
+	z.x = creal(coordinates);
+	z.y = cimag(coordinates);
+	current_count = 0;
+	while (pow(fabs(z.x), 2) + pow(fabs(z.y), 2) <= 4
+		&& current_count < algo->max_iteration)
+	{
+		z.x = fabs(z.x);
+		z.y = fabs(z.y);
+		tmp.x = pow(z.x, 2) - pow(z.y, 2) + creal(algo->julia_constant);
+		tmp.y = z.x * z.y * 2.0 + cimag(algo->julia_constant);
+		z.x = tmp.x;
+		z.y = tmp.y;
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
@@ -99,6 +124,8 @@ int	get_iteration_count(double complex coordinates, t_algorithm *algo)
 		return (get_burning_ship(coordinates, algo));
 	else if (algo->type == INVERSE_MANDELBROT)
 		return (get_inverted_mandelbrot(coordinates, algo));
+	else if (algo->type == BURNING_JULIA)
+		return (get_burning_julia(coordinates, algo));
 	else
 		return (-1);
 }
