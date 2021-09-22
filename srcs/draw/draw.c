@@ -6,12 +6,13 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 17:10:34 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 17:58:33 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "config.h"
+#include "draw.h"
 #include "algorithms.h"
 
 int	get_int_color_from_rgb(int r, int g, int b)
@@ -90,4 +91,5 @@ void	draw_fractal(t_config *config)
 	fill_img(config, &config->img);
 	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
 		config->img.img_ptr, 0, 0);
+	draw_hud(config);
 }

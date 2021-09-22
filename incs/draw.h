@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:51:35 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/21 23:15:59 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 18:05:02 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		create_img(int img_width, int img_height, int *img_data);
 */
 
 void	draw_fractal(t_config *config);
-int	get_color_value(int r, int g, int b);
+int		get_int_color_from_rgb(int r, int g, int b);
 void	fill_img(t_config *config, t_image_info *img);
 
 /*
@@ -35,5 +35,11 @@ void	fill_img(t_config *config, t_image_info *img);
 */
 
 bool	generate_screenshot(t_config *config);
+
+/*
+** hud.c
+*/
+
+void	draw_hud(t_config *config);
 
 #endif

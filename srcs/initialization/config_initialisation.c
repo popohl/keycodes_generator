@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 16:53:28 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 17:57:19 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,29 @@ static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)
 	if (!img->data)
 		return (false);
 	img->size_line /= 4;
+	return (true);
+}
+
+static bool	initialize_hud(t_mlx_params *mlx, t_image_info *hud)
+{
+	int i;
+
+	hud->size.x = 50;
+	hud->size.y = 50;
+	hud->img_ptr = mlx_new_image(mlx->mlx_ptr, hud->size.x, hud->size.y);
+	if (!hud->img_ptr)
+		return (false);
+	hud->data = (int *)mlx_get_data_addr(hud->img_ptr, &hud->img_depth,
+			&hud->size_line, &hud->endian);
+	if (!hud->data)
+		return (false);
+	hud->size_line /= 4;
+	i = 0;
+	while (i < hud->size.x * hud->size.y)
+	{
+		hud->data[i] = 0;
+		i++;
+	}
 	return (true);
 }
 
@@ -80,6 +103,8 @@ bool	initialize_config(t_config *config, int argc, char **argv)
 	config->img.size.x = 1280;
 	config->img.size.y = 720;
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
+		return (false);
+	if (!initialize_hud(&config->mlx, &config->hud))
 		return (false);
 	config->algo.max_iteration = 100;
 	config->wscreen.origin.x = 0;

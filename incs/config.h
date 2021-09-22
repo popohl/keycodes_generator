@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 16:52:56 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 17:33:25 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_config
 {
 	t_mlx_params	mlx;
 	t_image_info	img;
+	t_image_info	hud;
 	t_algorithm		algo;
 	t_world_screen	wscreen;
 	bool			is_shift_pressed;
