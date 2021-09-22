@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/21 23:05:00 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 17:10:34 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	get_color(int width, int height, t_config *cfg, t_image_info *img)
 	red = 0;
 	green = 0;
 	blue = 0;
-	if (percentage > 0.2)
-		red = ((percentage - 0.2) / 0.8) * 255;
-	if (percentage <= 0.4)
+	if (percentage > 0.1)
+		red = ((percentage - 0.1) / 0.9) * 255;
+	if (percentage <= 0.3)
 		blue = (percentage / 0.4) * 255;
 	else if (percentage < 0.6)
 		blue = 255 - ((percentage - 0.4) / 0.2) * 255;

@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 15:37:22 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 16:53:28 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ bool	initialize_config(t_config *config, int argc, char **argv)
 		config->algo.julia_constant = set_julia_constant(argv);
 	else if (argc != 2)
 		return (error(ARG_COUNT));
-	/* printf(">> %f, %f\n", creal(config->algo.julia_constant), cimag(config->algo.julia_constant)); */
 	config->img.size.x = 1280;
 	config->img.size.y = 720;
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
@@ -86,6 +85,6 @@ bool	initialize_config(t_config *config, int argc, char **argv)
 	config->wscreen.origin.x = 0;
 	config->wscreen.origin.y = 0;
 	set_wscreen_width(config, 4.0);
-	argv = NULL;
+	config->is_shift_pressed = false;
 	return (true);
 }

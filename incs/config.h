@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 15:45:44 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 16:52:56 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include "useful_structs.h"
 # include <complex.h>
+# include <stdbool.h>
 
 # define ESCAPE_VALUE 2
 
@@ -65,6 +66,7 @@ typedef struct s_config
 	t_image_info	img;
 	t_algorithm		algo;
 	t_world_screen	wscreen;
+	bool			is_shift_pressed;
 }	t_config;
 
 #endif
