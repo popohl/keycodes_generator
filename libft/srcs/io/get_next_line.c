@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 12:52:52 by pohl              #+#    #+#             */
-/*   Updated: 2021/04/17 14:41:23 by ft               ###   ########.fr       */
+/*   Updated: 2021/09/22 15:23:21 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	found_new_line(char **rest, char **line)
 	return (0);
 }
 
-int			final_return(char **line, char **rest, char *temp)
+int	final_return(char **line, char **rest, char *temp)
 {
 	if (temp)
 		free(temp);
@@ -70,7 +70,7 @@ int			final_return(char **line, char **rest, char *temp)
 	return (GNL_ERROR);
 }
 
-int			read_input(char **line, char **rest, char *temp, int fd)
+int	read_input(char **line, char **rest, char *temp, int fd)
 {
 	int	n;
 
@@ -96,7 +96,7 @@ int			read_input(char **line, char **rest, char *temp, int fd)
 	}
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*rest = NULL;
 	char		*temp;

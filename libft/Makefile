@@ -7,7 +7,7 @@ INCLUDES	= incs
 SRCS		= checker/ft_isalnum.c checker/ft_isalpha.c checker/ft_isascii.c \
 			  checker/ft_isdigit.c checker/ft_isprint.c checker/ft_isnumber.c \
 			  checker/ft_iswhitespace.c \
-			  conv/ft_atoi.c conv/ft_itoa.c \
+			  conv/ft_atoi.c conv/ft_itoa.c conv/ft_atod.c \
 			  io/ft_getopt.c io/ft_putchar_fd.c io/ft_putendl_fd.c \
 			  io/ft_putnbr_fd.c io/ft_putstr_fd.c io/get_next_line.c \
 			  linked_list/one_way_list/ft_lstadd_back.c \

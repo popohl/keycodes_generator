@@ -6,7 +6,7 @@
 /*   By: paulohl <paulohl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:39:50 by pohl              #+#    #+#             */
-/*   Updated: 2021/04/19 11:31:32 by ft               ###   ########.fr       */
+/*   Updated: 2021/09/22 15:22:39 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	ft_isnumber(const char *str);
 /* Conv */
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+double	ft_atod(const char *str);
 
 /* Io */
 void	ft_putstr_fd(char *s, int fd);

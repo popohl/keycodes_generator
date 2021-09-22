@@ -13,12 +13,14 @@ NAME	= fractol
 # list of your source files
 SRCS	= main.c \
 		  algorithms/calculate_fractal.c algorithms/values_updating.c \
-		  initialization/config_initialisation.c initialization/checkers.c \
+		  initialization/config_initialisation.c initialization/error.c \
 		  initialization/hooks.c \
-		  draw/draw.c
+		  draw/draw.c draw/bmp_creator.c draw/generate_screenshot.c
 
 # list of external libraries
 LIBS	= minilibx libft
+LIB_INC	= minilibx/ libft/incs/
+LIB_BIN	= minilibx/libmlx.a libft/libft.a
 
 # Compiler
 CC		= gcc
@@ -30,7 +32,7 @@ LDFLAGS	+= -lmlx -framework OpenGL -framework AppKit
 # The rest is automatic
 
 CFLAGS	+= -I$I
-CFLAGS	+= $(foreach lib,$(LIBS),-I $(lib))
+CFLAGS	+= $(foreach lib_incs,$(LIB_INC),-I $(lib_incs))
 LDFLAGS	+= $(foreach lib,$(LIBS),-L $(lib))
 
 SRCS	:= $(foreach file,$(SRCS),$S$(file))
@@ -50,7 +52,7 @@ $(OBJS): | $O
 
 $(OBJS): $O%.o: $S%
 	@mkdir -p $(@D)
-	@echo "Compiling $^: "
+	@echo "Compiling $<: "
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "✓"
 
@@ -65,9 +67,10 @@ $(DEPS): $D%.d: $S%
 
 $(NAME): $(OBJS)
 	@echo "Building external libraries"
-	$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
+	@$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
 	@echo "Assembling $(NAME)"
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $(LDFLAGS) $^ $(LIB_BIN) -o $@
+	@mkdir -p screenshots/
 
 clean:
 	@echo "Cleaning up..."
@@ -92,6 +95,6 @@ re: fclean all
 libre: libfclean all
 
 test: $(NAME)
-	./$(NAME)
+	./$(NAME) mandelbrot
 
 -include $(DEPS)
