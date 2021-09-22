@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/16 15:55:22 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 23:05:00 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_int_color_from_rgb(int r, int g, int b)
 	return (color);
 }
 
-double calculate_percentage(int width, int height, t_config *cfg)
+double calc_percentage(int width, int height, t_config *cfg, t_image_info *img)
 {
 	double complex	coordinates;
 	unsigned int	iterations;
@@ -33,19 +33,19 @@ double calculate_percentage(int width, int height, t_config *cfg)
 
 	screen_coord.x = width;
 	screen_coord.y = height;
-	coordinates = get_coordinates(screen_coord, cfg->img.size, &cfg->wscreen);
+	coordinates = get_coordinates(screen_coord, img->size, &cfg->wscreen);
 	iterations = get_iteration_count(coordinates, &cfg->algo);
 	return ((double)iterations / cfg->algo.max_iteration);
 }
 
-int	get_color(int width, int height, t_config *cfg)
+int	get_color(int width, int height, t_config *cfg, t_image_info *img)
 {
 	double	percentage;
 	int		red;
 	int		green;
 	int		blue;
 
-	percentage = calculate_percentage(width, height, cfg);
+	percentage = calc_percentage(width, height, cfg, img);
 	red = 0;
 	green = 0;
 	blue = 0;
@@ -62,27 +62,32 @@ int	get_color(int width, int height, t_config *cfg)
 	return (get_int_color_from_rgb(red, green, blue));
 }
 
-void	draw_fractal(t_config *config)
+void	fill_img(t_config *config, t_image_info *img)
 {
 	int				array_pos;
 	int				height;
 	int				width;
 
-	mlx_clear_window(config->mlx.mlx_ptr, config->mlx.win_ptr);
-	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
-		config->img.img_ptr, 0, 0);
 	height = 0;
-	while (height < config->img.size.y)
+	while (height < img->size.y)
 	{
 		width = 0;
-		while (width < config->img.size.x)
+		while (width < img->size.x)
 		{
-			array_pos = height * config->img.size_line + width;
-			config->img.data[array_pos] = get_color(width, height, config);
+			array_pos = height * img->size_line + width;
+			img->data[array_pos] = get_color(width, height, config, img);
 			width++;
 		}
 		height++;
 	}
+}
+
+void	draw_fractal(t_config *config)
+{
+	mlx_clear_window(config->mlx.mlx_ptr, config->mlx.win_ptr);
+	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
+		config->img.img_ptr, 0, 0);
+	fill_img(config, &config->img);
 	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
 		config->img.img_ptr, 0, 0);
 }

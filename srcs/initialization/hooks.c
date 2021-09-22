@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 15:45:52 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/21 23:12:45 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int	key_press(int keycode, void *param)
 		cfg->algo.type = INVERSE_MANDELBROT;
 	if (keycode == KC_Q || keycode == KC_ESCAPE)
 		close(cfg);
+	if (keycode == KC_P)
+		generate_screenshot(cfg);
 	draw_fractal(cfg);
 	if (keycode == KC_J)
 		printf("%f + %f * i\n", creal(cfg->algo.julia_constant), cimag(cfg->algo.julia_constant));
