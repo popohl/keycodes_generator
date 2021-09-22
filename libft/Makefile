@@ -22,7 +22,8 @@ SRCS		= checker/ft_isalnum.c checker/ft_isalpha.c checker/ft_isascii.c \
 			  math/ft_pow.c \
 			  mem/ft_bzero.c mem/ft_calloc.c mem/ft_memccpy.c mem/ft_memchr.c \
 			  mem/ft_memcmp.c mem/ft_memcpy.c mem/ft_memmove.c mem/ft_memset.c \
-			  num/ft_intlen.c str/ft_split.c str/ft_strcmp.c str/ft_strjoin.c \
+			  num/ft_intlen.c num/ft_longlen.c \
+			  str/ft_split.c str/ft_strcmp.c str/ft_strjoin.c \
 			  str/ft_strlcpy.c str/ft_strmapi.c str/ft_strnstr.c \
 			  str/ft_strtrim.c str/ft_tolower.c str/ft_strchr.c \
 			  str/ft_strdup.c str/ft_strlcat.c str/ft_strlen.c \

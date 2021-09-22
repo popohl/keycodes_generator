@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 15:44:24 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/16 11:59:42 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 19:23:17 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@
 # define KC_RIGHT_CTRL 269
 # define KC_SPACE 49
 # define KC_ESCAPE 53
+# define KC_SLASH 44
 
 #endif

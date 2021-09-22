@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 17:58:33 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 20:00:16 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void	draw_fractal(t_config *config)
 	fill_img(config, &config->img);
 	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
 		config->img.img_ptr, 0, 0);
-	draw_hud(config);
+	if (config->display_hud)
+		draw_hud(config);
 }

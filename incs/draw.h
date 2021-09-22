@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:51:35 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 18:05:02 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 19:22:19 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ bool	generate_screenshot(t_config *config);
 */
 
 void	draw_hud(t_config *config);
+void	display_help(t_mlx_params *mlx, t_image_info *img);
 
 #endif

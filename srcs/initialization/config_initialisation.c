@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 17:57:19 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 20:04:21 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static bool	initialize_hud(t_mlx_params *mlx, t_image_info *hud)
 {
 	int i;
 
-	hud->size.x = 50;
-	hud->size.y = 50;
+	hud->size.x = 350;
+	hud->size.y = 85;
 	hud->img_ptr = mlx_new_image(mlx->mlx_ptr, hud->size.x, hud->size.y);
 	if (!hud->img_ptr)
 		return (false);
@@ -111,5 +111,6 @@ bool	initialize_config(t_config *config, int argc, char **argv)
 	config->wscreen.origin.y = 0;
 	set_wscreen_width(config, 4.0);
 	config->is_shift_pressed = false;
+	config->display_hud = true;
 	return (true);
 }

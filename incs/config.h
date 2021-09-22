@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 17:33:25 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 19:59:36 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_config
 	t_algorithm		algo;
 	t_world_screen	wscreen;
 	bool			is_shift_pressed;
+	bool			display_hud;
 }	t_config;
 
 #endif

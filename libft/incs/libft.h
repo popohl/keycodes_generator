@@ -6,7 +6,7 @@
 /*   By: paulohl <paulohl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:39:50 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 15:22:39 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 18:50:23 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 /* Num */
 int		ft_intlen(int nbr);
+int		ft_longlen(long nbr);
 
 /* Str */
 char	*ft_strchr(const char *str, char c);

@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:53:53 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 18:38:03 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 20:04:34 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*get_fractal_zoom(char *str, double wscreen_width)
 	else
 	{
 		ft_strcpy(str + 13, "10^");
-		zoom_level_str = ft_itoa(ft_intlen(zoom_level_nbr));
+		zoom_level_str = ft_itoa(ft_longlen(zoom_level_nbr));
 		ft_strcpy(str + 16, zoom_level_str);
 	}
 	free(zoom_level_str);
@@ -67,8 +67,9 @@ void	draw_hud(t_config *config)
 		config->hud.img_ptr, 5, 5);
 	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 5, color,
 		get_fractal_type(str, config->algo.type));
-	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 25, color,
+	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 35, color,
 		get_fractal_zoom(str, config->wscreen.width));
-	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 45, color, "Show commands: ?");
+	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 65, color,
+		"Show commands: ?");
 	free(str);
 }

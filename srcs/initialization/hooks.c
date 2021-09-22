@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 17:30:58 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/22 19:59:19 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	handle_zooming(int keycode, t_config *cfg)
 	}
 	if (keycode == KC_0)
 		set_zoom_value(0, cfg);
-	if (keycode == KC_9)
-		set_zoom_value(7, cfg);
 }
 
 int key_release(int keycode, void *param)
@@ -158,11 +156,13 @@ int	key_press(int keycode, void *param)
 		close(cfg);
 	if (keycode == KC_P)
 		generate_screenshot(cfg);
+	if (keycode == KC_H)
+		cfg->display_hud = !cfg->display_hud;
 	if (keycode == KC_LEFT_SHIFT || keycode == KC_RIGHT_SHIFT)
 		cfg->is_shift_pressed = true;
 	draw_fractal(cfg);
-	if (keycode == KC_J)
-		printf("%f + %f * i\n", creal(cfg->algo.julia_constant), cimag(cfg->algo.julia_constant));
+	if (keycode == KC_SLASH)
+		display_help(&cfg->mlx, &cfg->img);
 	return (0);
 }
 
