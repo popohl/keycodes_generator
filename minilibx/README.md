@@ -1,29 +1,55 @@
-#
-#
-#  14/10/2015
-#  ol@staff.42.fr
-#
+[![Build](https://github.com/42Paris/minilibx-linux/actions/workflows/ci.yml/badge.svg)](https://github.com/42Paris/minilibx-linux/actions/workflows/ci.yml)
 
-MinilibX
+This is the MinilibX, a simple X-Window (X11R6) programming API
+in C, designed for students, suitable for X-beginners.
 
-Interface simplifiee de programmation graphique pour debutant
-#
 
-Cette minilibX est la version native pour MacOSX.
-[ Elle n'utilise plus les librairies graphiques X11, ni XQuartz le serveur X pour MacOSX. ]
-L'interface / l'API, reste identique a la version precedente. Les man presents dans la minilibX
-d'origine sont toujours valides.
+Contents
 
-Le fichier mlx.h a inclure dans vos programmes rapelle les petites differences de comportement
-entre les 2 versions, dues a la gestion graphique differente selon les systemes d'exploitation.
+ - source code in C to create the mlx library
+ - man pages (in man/ directory)
+ - a test program (in test/ directory) is built
+   with the library
+ - a public include file mlx.h
+ - a tiny configure script to generate an appropriate Makefile.gen
 
-#
+Requirements for Linux
 
-Cette version utilise le systeme de fenetrage Cocoa de MacOSX ( AppKit ), et les primitives
-graphiques OpenGL moderne.
+ - MinilibX only support TrueColor visual type (8,15,16,24 or 32 bits depth)
+ - gcc
+ - make
+ - X11 include files (package xorg)
+ - XShm extension must be present (package libxext-dev)
+ - Utility functions from BSD systems - development files (package libbsd-dev)
+ - **e.g. _sudo apt-get install gcc make xorg libxext-dev libbsd-dev_ (Debian/Ubuntu)**
+ 
+Requirements for MacOS
+ - [Xquartz](https://www.xquartz.org/)
 
-#
+```bash
+➜  ~ Brew install Xquartz
+➜  ~ reboot
+➜  ~ xeyes # run an hello world X11 app
+```
 
-License: la MinilibX macos est fournie sous license BSD: Copyright Olivier Crouzet - 2014-2015
-         la MinilibX est fournie sous license BSD:  Copyright Olivier Crouzet - 1999-2015
-#
+MlX Color Opacity / Transparency / Alpha (32 bits depth)
+ - 0xFF (fully transparent) or 0x00 (fully opaque)
+
+Compile MinilibX
+
+ - run ./configure or make
+   both will make a few tests, create Makefile.gen
+   and then automatically run make on this generated Makefile.gen .
+   libmlx.a and libmlx_$(HOSTTYPE).a are created.
+   test/mlx-test binary is also created.
+
+
+Install MinilibX
+
+ - no installation script is provided. You may want to install
+     - libmlx.a and/or libmlx_$(HOSTTYPE).a in /usr/X11/lib or /usr/local/lib
+     - mlx.h in /usr/X11/include or /usr/local/include
+     - man/man3/mlx*.1 in /usr/X11/man/man3 or /usr/local/man/man3
+
+
+ Olivier CROUZET - 2014-01-06 -

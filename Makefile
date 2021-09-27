@@ -22,20 +22,31 @@ SRCS	= main.c \
 # list of external libraries
 LIBS	= minilibx libft
 LIB_INC	= minilibx/ libft/incs/
-LIB_BIN	= minilibx/libmlx.a libft/libft.a
+LIB_BIN	= libft/libft.a
 
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra -Ofast# -fsanitize=address -g3
+CFLAGS	+= -Wall -Wextra #-Ofast# -fsanitize=address -g3
 # Assembly flags (add the libraries here for linux)
-LDFLAGS	+= -lmlx -framework OpenGL -framework AppKit
+LDFLAGS	= -lmlx
 
-# The rest is automatic
+# Operating system specific actions
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LIB_BIN += minilibx/libmlx_Linux.a
+	CCFLAGS += -D LINUX
+	LDFLAGS	+= -lm -lX11 -lXext -FOpenGL -FAppKit
+endif
+ifeq ($(UNAME_S),Darwin)
+	LIB_BIN += minilibx/libmlx_Macos.a
+	CCFLAGS += -D OSX
+	LDFLAGS	+= -framework OpenGL -framework AppKit
+endif
 
 CFLAGS	+= -I$I
 CFLAGS	+= $(foreach lib_incs,$(LIB_INC),-I $(lib_incs))
-LDFLAGS	+= $(foreach lib,$(LIBS),-L $(lib))
+LDFLAGS	+= $(foreach lib,$(LIBS),-L$(lib))
 
 SRCS	:= $(foreach file,$(SRCS),$S$(file))
 OBJS	= $(SRCS:$S%=$O%.o)
@@ -68,10 +79,10 @@ $(DEPS): $D%.d: $S%
 	@$(CC) $(CFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
 
 $(NAME): $(OBJS)
-	@echo "Building external libraries"
-	@$(foreach lib, $(LIBS),make --directory=$(lib) > /dev/null 2> /dev/null;)
+	@echo "Building external libraries:"
+	@$(foreach lib, $(LIBS),echo "$(lib):"; make --directory=$(lib) > /dev/null; echo "Done ✓";)
 	@echo "Assembling $(NAME)"
-	@$(CC) $(CFLAGS) $(LDFLAGS) $^ $(LIB_BIN) -o $@
+	@$(CC) $(CFLAGS) $^ $(LIB_BIN) $(LDFLAGS) -o $@
 	@mkdir -p screenshots/
 
 clean:
