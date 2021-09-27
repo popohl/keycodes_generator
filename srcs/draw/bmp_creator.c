@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:15:37 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 22:40:11 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/27 11:24:02 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,13 @@ static char	*create_pathname(int screenshot_count)
 	int			i;
 
 	if (screenshot_count < 10000)
-		if (!(path = ft_strdup("screenshots/sc-0000.bmp")))
+	{
+		path = ft_strdup("screenshots/sc-0000.bmp");
+		if (!path)
 			return (NULL);
+	}
+	else
+		return (NULL);
 	char_count = ft_intlen(screenshot_count);
 	i = 0;
 	while (i < char_count)
@@ -113,14 +118,16 @@ int		create_img(int img_width, int img_height, int *img_data)
 	static int	screenshot_count = 0;
 	char		*path;
 
-	if (!(path = create_pathname(++screenshot_count)))
+	path = create_pathname(++screenshot_count);
+	if (!path)
 		return (-1);
 	fd = open(path, O_CREAT | O_WRONLY, S_IRWXU
 				| S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
 	write_bmfh(fd, img_width, img_height);
 	write_bmih(fd, img_width, img_height);
 	write_img(fd, img_data, img_width, img_height);
-	free(path);
-	/* close(fd); */
+	if (path)
+		free(path);
+	close(fd);
 	return (0);
 }
