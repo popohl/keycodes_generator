@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 19:59:19 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/27 12:42:29 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	key_press(int keycode, void *param)
 	t_config	*cfg;
 
 	cfg = param;
+	printf("keycode: %d\n", keycode);
 	if (keycode == KC_RIGHT_ARR)
 	{
 		if (cfg->is_shift_pressed)

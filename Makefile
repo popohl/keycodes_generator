@@ -27,7 +27,7 @@ LIB_BIN	= libft/libft.a
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra #-Ofast# -fsanitize=address -g3
+CFLAGS	+= -Wall -Wextra -fsanitize=address -g3 #-Ofast
 # Assembly flags (add the libraries here for linux)
 LDFLAGS	= -lmlx
 
@@ -37,15 +37,17 @@ ifeq ($(UNAME_S),Linux)
 	LIB_BIN += minilibx/libmlx_Linux.a
 	CCFLAGS += -D LINUX
 	LDFLAGS	+= -lm -lX11 -lXext -FOpenGL -FAppKit
+	I		+= incs/linux_specific/
 endif
 ifeq ($(UNAME_S),Darwin)
 	LIB_BIN += minilibx/libmlx_Macos.a
 	CCFLAGS += -D OSX
 	LDFLAGS	+= -framework OpenGL -framework AppKit
+	I		+= incs/macos_specific/
 endif
 
-CFLAGS	+= -I$I
-CFLAGS	+= $(foreach lib_incs,$(LIB_INC),-I $(lib_incs))
+CFLAGS	+= $(foreach inc,$I,-I $(inc))
+CFLAGS	+= $(foreach lib_inc,$(LIB_INC),-I $(lib_inc))
 LDFLAGS	+= $(foreach lib,$(LIBS),-L$(lib))
 
 SRCS	:= $(foreach file,$(SRCS),$S$(file))

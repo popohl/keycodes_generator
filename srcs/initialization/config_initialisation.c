@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 20:04:21 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/27 12:43:09 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ bool	initialize_config(t_config *config, int argc, char **argv)
 		config->algo.julia_constant = set_julia_constant(argv);
 	else if (argc != 2)
 		return (error(ARG_COUNT));
-	config->img.size.x = 1280;
-	config->img.size.y = 720;
+	config->img.size.x = 500;
+	config->img.size.y = 500;
 	if (!initialize_mlx_stuff(&config->mlx, &config->img))
 		return (false);
 	if (!initialize_hud(&config->mlx, &config->hud))
