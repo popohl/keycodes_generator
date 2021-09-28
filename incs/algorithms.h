@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 13:41:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 16:18:08 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 17:51:26 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void			set_zoom_value(double zoom_value, t_config *config);
 ** calculate_fractal.c
 */
 
-int	get_glynn(double complex coordinates, t_algorithm *algo);
-int	get_burning_julia(double complex coordinates, t_algorithm *algo);
-int	get_inv_mandelbrot(double complex coordinates, t_algorithm *algo);
+int				get_glynn(double complex coordinates, t_algorithm *algo);
+int				get_burning_julia(double complex coord, t_algorithm *algo);
+int				get_inv_mandelbrot(double complex coord, t_algorithm *algo);
 
 #endif
