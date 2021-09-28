@@ -17,7 +17,7 @@ SRCS	= main.c \
 		  initialization/config_initialisation.c initialization/error.c \
 		  initialization/hooks.c \
 		  draw/draw.c draw/bmp_creator.c draw/generate_screenshot.c draw/hud.c \
-		  draw/help.c
+		  draw/help.c draw/color_functions.c
 
 # list of external libraries
 LIBS	= minilibx libft

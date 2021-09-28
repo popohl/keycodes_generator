@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 14:11:18 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:37:28 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_mandelbrot(double complex coordinates, t_algorithm *algo)
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 
@@ -43,7 +43,7 @@ static int	get_glynn(double complex coordinates, t_algorithm *algo)
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 
@@ -58,7 +58,7 @@ static int	get_julia(double complex coordinates, t_algorithm *algo)
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 
@@ -83,7 +83,7 @@ static int	get_burning_julia(double complex coordinates, t_algorithm *algo)
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 
@@ -108,7 +108,7 @@ static int	get_burning_ship(double complex coordinates, t_algorithm *algo)
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 
@@ -125,7 +125,7 @@ static int	get_inverted_mandelbrot(double complex coordinates, t_algorithm *algo
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
-		return (0);
+		return (-1);
 	return (current_count);
 }
 

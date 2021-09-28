@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/22 20:00:16 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:39:58 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int	get_int_color_from_rgb(int r, int g, int b)
 double calc_percentage(int width, int height, t_config *cfg, t_image_info *img)
 {
 	double complex	coordinates;
-	unsigned int	iterations;
+	int				iterations;
 	t_ivect2		screen_coord;
 
 	screen_coord.x = width;
 	screen_coord.y = height;
 	coordinates = get_coordinates(screen_coord, img->size, &cfg->wscreen);
 	iterations = get_iteration_count(coordinates, &cfg->algo);
+	if (iterations == -1)
+		return (-1);
 	return ((double)iterations / cfg->algo.max_iteration);
 }
 
@@ -47,6 +49,9 @@ int	get_color(int width, int height, t_config *cfg, t_image_info *img)
 	int		blue;
 
 	percentage = calc_percentage(width, height, cfg, img);
+	if (percentage == -1)
+		return (COLOR_BLACK);
+	return (hsv_to_rgb(percentage * 360, 1, 1));
 	red = 0;
 	green = 0;
 	blue = 0;

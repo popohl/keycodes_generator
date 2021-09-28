@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 14:05:45 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:39:42 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdbool.h>
 
 # define ESCAPE_VALUE 2
+# define COLOR_BLACK 0x00000000
+# define COLOR_WHITE 0xffffff00
 
 enum	e_algorithm_type
 {
