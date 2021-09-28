@@ -27,7 +27,7 @@ LIB_BIN	= libft/libft.a
 # Compiler
 CC		= gcc
 # Compiler flags
-CFLAGS	+= -Wall -Wextra -fsanitize=address -g3 #-Ofast
+CFLAGS	+= -Wall -Wextra -Ofast#-fsanitize=address -g3 
 # Assembly flags (add the libraries here for linux)
 LDFLAGS	= -lmlx
 
@@ -82,7 +82,7 @@ $(DEPS): $D%.d: $S%
 
 $(NAME): $(OBJS)
 	@echo "Building external libraries:"
-	@$(foreach lib, $(LIBS),echo "$(lib):"; make --directory=$(lib) > /dev/null; echo "Done ✓";)
+	@$(foreach lib, $(LIBS),echo "$(lib):"&& make --directory=$(lib) > /dev/null&& echo "Done ✓";)
 	@echo "Assembling $(NAME)"
 	@$(CC) $(CFLAGS) $^ $(LIB_BIN) $(LDFLAGS) -o $@
 	@mkdir -p screenshots/

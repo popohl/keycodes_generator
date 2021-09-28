@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:53:53 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/22 20:04:34 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 13:42:16 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	draw_hud(t_config *config)
 		return;
 	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
 		config->hud.img_ptr, 5, 5);
-	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 5, color,
+	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 25, color,
 		get_fractal_type(str, config->algo.type));
-	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 35, color,
+	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 45, color,
 		get_fractal_zoom(str, config->wscreen.width));
 	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 65, color,
 		"Show commands: ?");

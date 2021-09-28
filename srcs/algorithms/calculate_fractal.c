@@ -6,7 +6,7 @@
 /*   By: pohl <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:32:35 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 15:48:32 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:11:18 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ static int	get_mandelbrot(double complex coordinates, t_algorithm *algo)
 	while (cabs(z) <= ESCAPE_VALUE && current_count < algo->max_iteration)
 	{
 		z = z * z + coordinates;
+		current_count++;
+	}
+	if (current_count == algo->max_iteration)
+		return (0);
+	return (current_count);
+}
+
+static int	get_glynn(double complex coordinates, t_algorithm *algo)
+{
+	int	current_count;
+
+	current_count = 0;
+	while (cabs(coordinates) <= ESCAPE_VALUE && current_count < algo->max_iteration)
+	{
+		coordinates = cpow(coordinates, 1.5) + 0.2;
 		current_count++;
 	}
 	if (current_count == algo->max_iteration)
@@ -126,6 +141,8 @@ int	get_iteration_count(double complex coordinates, t_algorithm *algo)
 		return (get_inverted_mandelbrot(coordinates, algo));
 	else if (algo->type == BURNING_JULIA)
 		return (get_burning_julia(coordinates, algo));
+	else if (algo->type == GLYNN)
+		return (get_glynn(coordinates, algo));
 	else
 		return (-1);
 }

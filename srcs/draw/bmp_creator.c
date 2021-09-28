@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:15:37 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/27 11:24:02 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 13:57:52 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,22 @@
 ** this header gives info on the file itself
 */
 
-static void	write_bmfh(int fd, int img_width, int img_height)
+static bool	write_bmfh(int fd, int img_width, int img_height)
 {
 	int		temp;
 
-	write(fd, "BM", 2);
+	if (write(fd, "BM", 2) == -1)
+		return (false);
 	temp = 54 + img_width * img_height * 4;
-	write(fd, &temp, 4);
+	if (write(fd, &temp, 4) == -1)
+		return (false);
 	temp = 0;
-	write(fd, &temp, 4);
+	if (write(fd, &temp, 4) == -1)
+		return (false);
 	temp = 54;
-	write(fd, &temp, 4);
+	if (write(fd, &temp, 4) == -1)
+		return (false);
+	return (true);
 }
 
 /*
@@ -38,26 +43,32 @@ static void	write_bmfh(int fd, int img_width, int img_height)
 ** this header gives info on the image
 */
 
-static void	write_bmih(int fd, int img_width, int img_height)
+static bool	write_bmih(int fd, int img_width, int img_height)
 {
+	int		i;
 	int		temp;
 
 	temp = 40;
-	write(fd, &temp, 4);
-	temp = img_width;
-	write(fd, &temp, 4);
-	temp = img_height;
-	write(fd, &temp, 4);
-	write(fd, "\1\0", 2);
+	if (write(fd, &temp, 4) == -1)
+		return (false);
+	if (write(fd, &img_width, 4) == -1)
+		return (false);
+	if (write(fd, &img_height, 4) == -1)
+		return (false);
+	if (write(fd, "\1\0", 2) == -1)
+		return (false);
 	temp = 32;
-	write(fd, &temp, 2);
+	if (write(fd, &temp, 2) == -1)
+		return (false);
 	temp = 0;
-	write(fd, &temp, 4);
-	write(fd, &temp, 4);
-	write(fd, &temp, 4);
-	write(fd, &temp, 4);
-	write(fd, &temp, 4);
-	write(fd, &temp, 4);
+	i = 0;
+	while (i < 6)
+	{
+		if (write(fd, &temp, 4) == -1)
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 /*
@@ -65,7 +76,7 @@ static void	write_bmih(int fd, int img_width, int img_height)
 ** bottom to top, because images are stored upside down in the bmp format
 */
 
-static void	write_img(int fd, int *img_data, int img_width, int img_height)
+static bool	write_img(int fd, int *img_data, int img_width, int img_height)
 {
 	int		i;
 
@@ -73,8 +84,10 @@ static void	write_img(int fd, int *img_data, int img_width, int img_height)
 	while (i > 0)
 	{
 		i -= img_width;
-		write(fd, img_data + i, img_width * 4);
+		if (write(fd, img_data + i, img_width * 4) == -1)
+			return (false);
 	}
+	return (true);
 }
 
 /*
@@ -112,7 +125,7 @@ static char	*create_pathname(int screenshot_count)
 ** in parameter in it.
 */
 
-int		create_img(int img_width, int img_height, int *img_data)
+bool	create_img(int img_width, int img_height, int *img_data)
 {
 	int			fd;
 	static int	screenshot_count = 0;
@@ -120,14 +133,17 @@ int		create_img(int img_width, int img_height, int *img_data)
 
 	path = create_pathname(++screenshot_count);
 	if (!path)
-		return (-1);
+		return (false);
 	fd = open(path, O_CREAT | O_WRONLY, S_IRWXU
 				| S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
-	write_bmfh(fd, img_width, img_height);
-	write_bmih(fd, img_width, img_height);
-	write_img(fd, img_data, img_width, img_height);
+	if (!write_bmfh(fd, img_width, img_height))
+		return (false);
+	if (!write_bmih(fd, img_width, img_height))
+		return (false);
+	if (!write_img(fd, img_data, img_width, img_height))
+		return (false);
 	if (path)
 		free(path);
 	close(fd);
-	return (0);
+	return (true);
 }

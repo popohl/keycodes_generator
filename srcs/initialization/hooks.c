@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/27 12:42:29 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:06:07 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 #include "keycodes.h"
 #include "algorithms.h"
 
-int close(void *param)
+int close()
 {
-	t_config	*config = param;
-
-	mlx_destroy_image(config->mlx.mlx_ptr, config->mlx.win_ptr); 
-	/* mlx_destroy_window(config->mlx.mlx_ptr, config->mlx.win_ptr); */ 
 	exit(0);
 	return (0);
 }
@@ -99,7 +95,7 @@ int	key_press(int keycode, void *param)
 	t_config	*cfg;
 
 	cfg = param;
-	printf("keycode: %d\n", keycode);
+	/* printf("keycode: %d\n", keycode); */
 	if (keycode == KC_RIGHT_ARR)
 	{
 		if (cfg->is_shift_pressed)
@@ -153,6 +149,8 @@ int	key_press(int keycode, void *param)
 		cfg->algo.type = BURNING_JULIA;
 	if (keycode == KC_5)
 		cfg->algo.type = INVERSE_MANDELBROT;
+	if (keycode == KC_6)
+		cfg->algo.type = GLYNN;
 	if (keycode == KC_Q || keycode == KC_ESCAPE)
 		close(cfg);
 	if (keycode == KC_P)
@@ -172,6 +170,6 @@ void	create_hooks(t_config *config)
 	mlx_hook(config->mlx.win_ptr, 2, 1L<<0, key_press, config);
 	mlx_hook(config->mlx.win_ptr, 3, 1L<<1, key_release, config);
 	mlx_hook(config->mlx.win_ptr, 4, 1L<<2, mouse_press, config);
-	mlx_hook(config->mlx.win_ptr, 17, 1L<<0, close, config);
+	mlx_hook(config->mlx.win_ptr, 17, 1L<<0, close, NULL);
 	/* mlx_hook(config->mlx.win_ptr, 6, 1L<<13, mouse_move, config); */
 }
