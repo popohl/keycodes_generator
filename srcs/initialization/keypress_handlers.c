@@ -6,12 +6,15 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 16:26:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 16:29:58 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:47:46 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "config.h"
+#include "algorithms.h"
+#include "keycodes.h"
 
-static void	handle_movement(int keycode, t_config *cfg)
+void	handle_movement(int keycode, t_config *cfg)
 {
 	if (cfg->is_shift_pressed)
 	{
@@ -37,7 +40,7 @@ static void	handle_movement(int keycode, t_config *cfg)
 	}
 }
 
-static void	handle_julia_constant(int keycode, t_config *cfg)
+void	handle_julia_constant(int keycode, t_config *cfg)
 {
 	if (keycode == KC_W)
 		cfg->algo.julia_constant += 0.01 * I;
@@ -51,7 +54,7 @@ static void	handle_julia_constant(int keycode, t_config *cfg)
 		cfg->algo.julia_constant = 0;
 }
 
-static void	handle_zooming(int keycode, t_config *cfg)
+void	handle_zooming(int keycode, t_config *cfg)
 {
 	if (keycode == KC_EQUAL)
 	{
@@ -71,7 +74,7 @@ static void	handle_zooming(int keycode, t_config *cfg)
 		set_zoom_value(0, cfg);
 }
 
-static void	handle_algorithm_selection(int keycode, t_config *cfg)
+void	handle_algorithm_selection(int keycode, t_config *cfg)
 {
 	if (keycode == KC_1)
 		cfg->algo.type = MANDELBROT;
