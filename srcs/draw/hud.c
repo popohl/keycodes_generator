@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:53:53 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 13:42:16 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:51:26 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	draw_hud(t_config *config)
 	color = get_int_color_from_rgb(255, 255, 255);
 	str = (char *)malloc(100 * sizeof(char));
 	if (!str)
-		return;
+		return ;
 	mlx_put_image_to_window(config->mlx.mlx_ptr, config->mlx.win_ptr,
 		config->hud.img_ptr, 5, 5);
 	mlx_string_put(config->mlx.mlx_ptr, config->mlx.win_ptr, 7, 25, color,

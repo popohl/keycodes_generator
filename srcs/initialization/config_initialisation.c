@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/28 14:10:08 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:59:26 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static bool	initialize_mlx_stuff(t_mlx_params *mlx, t_image_info *img)
 
 static bool	initialize_hud(t_mlx_params *mlx, t_image_info *hud)
 {
-	int i;
+	int		i;
 
 	hud->size.x = 350;
 	hud->size.y = 85;
@@ -60,7 +60,7 @@ static bool	initialize_hud(t_mlx_params *mlx, t_image_info *hud)
 	return (true);
 }
 
-static bool get_algo_type(char *type, int *type_to_set)
+static bool	get_algo_type(char *type, int *type_to_set)
 {
 	if (!ft_strcmp("mandelbrot", type))
 		*type_to_set = MANDELBROT;
