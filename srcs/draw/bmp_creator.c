@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:15:37 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 13:57:52 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 15:16:46 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ bool	create_img(int img_width, int img_height, int *img_data)
 	if (!path)
 		return (false);
 	fd = open(path, O_CREAT | O_WRONLY, S_IRWXU
-				| S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+			| S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
 	if (!write_bmfh(fd, img_width, img_height))
 		return (false);
 	if (!write_bmih(fd, img_width, img_height))

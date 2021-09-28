@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:50:01 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/28 14:39:58 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 14:56:35 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_int_color_from_rgb(int r, int g, int b)
 	return (color);
 }
 
-double calc_percentage(int width, int height, t_config *cfg, t_image_info *img)
+double	calc_percentage(int width, int height, t_config *cfg, t_image_info *img)
 {
 	double complex	coordinates;
 	int				iterations;

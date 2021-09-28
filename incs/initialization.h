@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 13:43:39 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 22:00:08 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:13:05 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-enum error_codes
+enum e_error_codes
 {
 	ARG_COUNT = 0,
 	ALGO_TYPE,

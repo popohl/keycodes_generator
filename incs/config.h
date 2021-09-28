@@ -6,14 +6,12 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 16:03:23 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 14:39:42 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:08:55 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_STRUCTS_H
-# define MAIN_STRUCTS_H
-
-#include "debug.h"
+#ifndef CONFIG_H
+# define CONFIG_H
 
 # include "useful_structs.h"
 # include <complex.h>
@@ -33,7 +31,7 @@ enum	e_algorithm_type
 	GLYNN,
 };
 
-typedef struct	s_image_info
+typedef struct s_image_info
 {
 	void		*img_ptr;
 	int			*data;
@@ -43,14 +41,14 @@ typedef struct	s_image_info
 	int			img_depth;
 }	t_image_info;
 
-typedef struct	s_world_screen
+typedef struct s_world_screen
 {
 	t_dvect2	origin;
 	double		width;
 	double		height;
 }	t_world_screen;
 
-typedef	struct s_mlx_params
+typedef struct s_mlx_params
 {
 	void	*mlx_ptr;
 	void	*win_ptr;

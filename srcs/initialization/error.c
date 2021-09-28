@@ -6,11 +6,12 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:50:10 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/21 22:01:39 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:14:07 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include <stdio.h>
 #include "config.h"
 #include "initialization.h"
 

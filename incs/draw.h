@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:51:35 by paulohl           #+#    #+#             */
-/*   Updated: 2021/09/28 14:35:43 by pohl             ###   ########.fr       */
+/*   Updated: 2021/09/28 16:12:55 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	display_help(t_mlx_params *mlx, t_image_info *img);
 ** color_functions.c
 */
 
-int hsv_to_rgb(double hue, double sat, double val);
+int		hsv_to_rgb(double hue, double sat, double val);
 
 #endif
