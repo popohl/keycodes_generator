@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/10/04 20:36:25 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 20:42:45 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	exit_program(void *param)
 	write(config->fd, "\n#endif\n", 8);
 	close(config->fd);
 	printf("\n---------------------------------------------------------------\n"
-			"The file is now generated, thank you, you can enter this command t"
-			"o put it in the project:\nmv ./keycodes.h ../path/to/fractol/incs/"
-			"linux_specific/keycodes.h\n");
+		"The file is now generated, thank you, you can enter this command to pu"
+		"t it in the project:\nmv ./keycodes.h ../path/to/fractol/incs/linux_sp"
+		"ecific/keycodes.h\n");
 	exit(0);
 	return (0);
 }
