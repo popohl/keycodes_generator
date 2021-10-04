@@ -12,12 +12,7 @@ NAME	= fractol
 
 # list of your source files
 SRCS	= main.c \
-		  algorithms/calculate_fractal.c algorithms/values_updating.c \
-		  algorithms/zoom.c algorithms/calculate_fractal_2.c \
-		  initialization/config_initialisation.c initialization/error.c \
-		  initialization/hooks.c initialization/keypress_handlers.c \
-		  draw/draw.c draw/bmp_creator.c draw/generate_screenshot.c draw/hud.c \
-		  draw/help.c draw/color_functions.c
+		  initialization/config_initialisation.c initialization/hooks.c \
 
 # list of external libraries
 LIBS	= minilibx libft

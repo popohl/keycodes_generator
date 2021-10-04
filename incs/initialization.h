@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 13:43:39 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 16:45:31 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 18:27:22 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define INITIALIZATION_H
 
 # include <stdbool.h>
+# include "config.h"
 
 enum e_error_codes
 {
@@ -26,6 +27,8 @@ enum e_error_codes
 */
 
 void	create_hooks(t_config *config);
+int		exit_program(void *param);
+void	prompt_for_key(t_config *config);
 
 /*
 ** checkers.c

@@ -6,83 +6,62 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/09/28 16:46:50 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 18:31:46 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include "mlx.h"
-#include "draw.h"
-#include "keycodes.h"
-#include "algorithms.h"
+#include "libft.h"
 #include "initialization.h"
 
-int	close(void)
-{
-	exit(0);
-	return (0);
-}
-
-int	mouse_press(int button, int x, int y, void *param)
+int	exit_program(void *param)
 {
 	t_config	*config;
 
 	config = param;
-	if (button == 4)
-	{
-		zoom_mouse(0.92, x, y, config);
-		draw_fractal(config);
-	}
-	else if (button == 5)
-	{
-		zoom_mouse(1.08, x, y, config);
-		draw_fractal(config);
-	}
+	write(config->fd, "\n#endif\n", 8);
+	close(config->fd);
+	printf("\n---------------------------------------------------------------\n"
+			"The file is now generated, thank you, you can enter this command t"
+			"o put it in the project:\nmv ./keycodes.h ../path/to/fractol/incs/"
+			"linux_specific/keycodes.h\n");
+	exit(0);
 	return (0);
 }
 
-int	key_release(int keycode, void *param)
+void	prompt_for_key(t_config *config)
 {
-	t_config	*cfg;
+	static int	i = 0;
 
-	cfg = param;
-	if (keycode == KC_LEFT_SHIFT || keycode == KC_RIGHT_SHIFT)
-		cfg->is_shift_pressed = false;
-	return (0);
+	printf("Please press the %s key on your keyboard", keys[i]);
+	i++;
+	if (i == 52)
+		exit_program(config);
 }
 
 int	key_press(int keycode, void *param)
 {
-	t_config	*cfg;
+	static int	i = 0;
+	t_config	*config;
+	char		*keycode_char;
 
-	cfg = param;
-	handle_movement(keycode, cfg);
-	handle_zooming(keycode, cfg);
-	handle_julia_constant(keycode, cfg);
-	handle_algorithm_selection(keycode, cfg);
-	if (keycode == KC_POINT)
-		cfg->algo.max_iteration += 50;
-	if (keycode == KC_COMMA && cfg->algo.max_iteration > 50)
-		cfg->algo.max_iteration -= 50;
-	if (keycode == KC_Q || keycode == KC_ESCAPE)
-		close();
-	if (keycode == KC_P)
-		generate_screenshot(cfg);
-	if (keycode == KC_H)
-		cfg->display_hud = !cfg->display_hud;
-	if (keycode == KC_LEFT_SHIFT || keycode == KC_RIGHT_SHIFT)
-		cfg->is_shift_pressed = true;
-	draw_fractal(cfg);
-	if (keycode == KC_SLASH)
-		display_help(&cfg->mlx, &cfg->img);
+	config = param;
+	write(config->fd, "# define KC_", 12);
+	write(config->fd, keys[i], ft_strlen(keys[i]));
+	write(config->fd, " ", 1);
+	keycode_char = ft_itoa(keycode);
+	write(config->fd, keycode_char, ft_strlen(keycode_char));
+	write(config->fd, "\n", 1);
+	prompt_for_key(config);
 	return (0);
 }
 
 void	create_hooks(t_config *config)
 {
 	mlx_hook(config->mlx.win_ptr, 2, 1L << 0, key_press, config);
-	mlx_hook(config->mlx.win_ptr, 3, 1L << 1, key_release, config);
-	mlx_hook(config->mlx.win_ptr, 4, 1L << 2, mouse_press, config);
-	mlx_hook(config->mlx.win_ptr, 17, 1L << 0, close, NULL);
+	mlx_hook(config->mlx.win_ptr, 17, 1L << 0, exit_program, NULL);
 }
