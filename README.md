@@ -7,7 +7,7 @@ The program opens a minilibx window to take in the inputs, then asks you to pres
 
 Once you have pressed all the keys, the program ends and outputs a `keycodes.h` file that you can use in your minilibx projects.
 
-There is a good collection of keys already present, but if you want to expand the list, just modify the global variable in `incs/config.h`
+There is a good collection of keys already present, but if you want to expand the list, just modify the global variable in `incs/keys.h`
 and if needed, increase the MAX_SIZE variable, it represents how big each string is allowed to be.
 
 Finally, if you don't like the defines, all the work is done in the `key_press` function in `srcs/initialization/hooks.c`

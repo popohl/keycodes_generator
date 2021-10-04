@@ -6,7 +6,7 @@
 /*   By: paulohl <pohl@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 12:00:18 by paulohl           #+#    #+#             */
-/*   Updated: 2021/10/04 18:03:26 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 20:33:34 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	initialize_config(t_config *config)
 {
 	config->screen_size.x = 100;
 	config->screen_size.y = 100;
-	config->fd = open("./keycodes.h", O_WRONLY | O_CREAT);
+	config->fd = open("./keycodes.h", O_WRONLY | O_CREAT, 00755);
 	write(config->fd, "#ifndef KEYCODES_H\n# define KEYCODES_H\n\n", 40);
 	if (!initialize_mlx_stuff(&config->mlx, config->screen_size))
 		return (false);

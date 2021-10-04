@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/10/04 18:46:15 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 20:36:25 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "mlx.h"
 #include "libft.h"
 #include "initialization.h"
+#include "keys.h"
 
 int	exit_program(void *param)
 {
@@ -37,10 +38,10 @@ void	prompt_for_key(t_config *config)
 {
 	static int	i = 0;
 
-	printf("Please press the %s key on your keyboard", keys[i]);
-	i++;
-	if (i == sizeof(keys) / MAX_SIZE)
+	if (i == sizeof(keys_infos) / MAX_SIZE)
 		exit_program(config);
+	printf("Please press the %s key on your keyboard\n", keys_infos[i]);
+	i++;
 }
 
 int	key_press(int keycode, void *param)
@@ -51,12 +52,14 @@ int	key_press(int keycode, void *param)
 
 	config = param;
 	write(config->fd, "# define KC_", 12);
-	write(config->fd, keys[i], ft_strlen(keys[i]));
+	write(config->fd, keys_infos[i], ft_strlen(keys_infos[i]));
 	write(config->fd, " ", 1);
 	keycode_char = ft_itoa(keycode);
 	write(config->fd, keycode_char, ft_strlen(keycode_char));
 	write(config->fd, "\n", 1);
 	prompt_for_key(config);
+	free(keycode_char);
+	i++;
 	return (0);
 }
 
