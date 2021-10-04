@@ -6,7 +6,7 @@
 /*   By: pohl <pohl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:12:55 by pohl              #+#    #+#             */
-/*   Updated: 2021/10/04 18:31:46 by pohl             ###   ########.fr       */
+/*   Updated: 2021/10/04 18:46:15 by pohl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	prompt_for_key(t_config *config)
 
 	printf("Please press the %s key on your keyboard", keys[i]);
 	i++;
-	if (i == 52)
+	if (i == sizeof(keys) / MAX_SIZE)
 		exit_program(config);
 }
 
